@@ -24,6 +24,7 @@
     "react-apollo": "^1.4.16",
     "react-native": "^0.48.4",
     "react-native-cli": "^2.0.1",
+    "react-native-elements": "^0.17.0",
     "react-native-maps": "^0.17.1",
     "watchman": "^0.1.8"
   }
