@@ -26,6 +26,7 @@
     "react-native-cli": "^2.0.1",
     "react-native-elements": "^0.17.0",
     "react-native-maps": "^0.17.1",
+    "styled-components": "^2.2.2",
     "watchman": "^0.1.8"
   }
 }
