@@ -40,6 +40,7 @@
     "react-native-cli": "^2.0.1",
     "react-native-elements": "^0.17.0",
     "react-native-maps": "^0.17.1",
+    "recompose": "^0.26.0",
     "styled-components": "^2.2.2",
     "stylelint": "^8.0.0",
     "stylelint-config-standard": "^17.0.0",
