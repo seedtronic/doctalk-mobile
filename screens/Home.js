@@ -47,7 +47,7 @@ export default function() {
       <StatusBarFiller />
       <Header>
         <Title>
-          <TitleText>Doctalk</TitleText>
+          <TitleText>Doctalk++</TitleText>
         </Title>
         <Search>
           <Button
