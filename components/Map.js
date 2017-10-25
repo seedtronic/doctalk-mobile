@@ -7,13 +7,8 @@ export default compose(
   lifecycle({
     componentWillMount() {
       navigator.geolocation.getCurrentPosition(
-        ({ coords: { latitude, longitude } }) => {
+        ({ coords: { latitude, longitude } }) =>
           this.props.setLocation({ latitude, longitude })
-        },
-        error => {
-          console.log("Error", error)
-        },
-        {}
       )
     }
   })
