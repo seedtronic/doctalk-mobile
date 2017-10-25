@@ -53,7 +53,10 @@ export default function() {
           <Button
             title="Buscar"
             iconLeft
-            icon={{ name: "search", color: "white" }}
+            icon={{ name: "search", color: "white", size: 24 }}
+            borderRadius={5}
+            fontSize={24}
+            backgroundColor="steelblue"
           />
         </Search>
       </Header>
