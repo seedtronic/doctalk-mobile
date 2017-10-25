@@ -5,7 +5,7 @@ import SearchScreen from "./screens/SearchScreen"
 import DoctorScreen from "./screens/DoctorScreen"
 import SearchButton from "./components/SearchButton"
 
-export default StackNavigator({
+const MainNavigator = StackNavigator({
   MapScreen: {
     screen: MapScreen,
     navigationOptions: {
@@ -13,6 +13,22 @@ export default StackNavigator({
       headerRight: <SearchButton />
     }
   },
-  SearchScreen: { screen: SearchScreen },
   DoctorScreen: { screen: DoctorScreen }
 })
+
+const SearchScreenNavigator = StackNavigator({
+  SearchScreen: {
+    screen: SearchScreen,
+    navigationOptions: {
+      title: "Escolha uma especialidade"
+    }
+  }
+})
+
+export default StackNavigator(
+  {
+    MainNavigator: { screen: MainNavigator },
+    SearchScreenNavigator: { screen: SearchScreenNavigator }
+  },
+  { headerMode: "none", mode: "modal" }
+)

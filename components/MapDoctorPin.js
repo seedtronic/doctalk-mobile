@@ -1,36 +1,39 @@
 import React from "react"
-import styled from "styled-components/native"
-import { Icon } from "react-native-elements"
+import { Button } from "react-native-elements"
 import { MapView } from "expo"
+import { withNavigation } from "react-navigation"
+import { compose, withState } from "recompose"
 
-const Container = styled.View`
-  align-items: center;
-  flex-direction: row;
-  background-color: steelblue;
-  border-radius: 5;
-  padding-top: 5;
-  padding-left: 5;
-  padding-bottom: 5;
-  padding-right: 5;
-`
+export default compose(
+  withNavigation,
+  withState("pressed", "setPressed", false)
+)(MapDoctorPin)
 
-const Name = styled.View`
-  margin-left: 5;
-`
-
-const NameText = styled.Text`
-  color: white;
-  font-weight: bold;
-`
-export default function MapDoctorPin({ doctor: { name, location } }) {
+function MapDoctorPin({
+  navigation,
+  pressed,
+  setPressed,
+  doctor: { name, location }
+}) {
   return (
-    <MapView.Marker coordinate={location}>
-      <Container>
-        <Icon name="favorite" color="white" size={14} />
-        <Name>
-          <NameText>{name}</NameText>
-        </Name>
-      </Container>
+    <MapView.Marker coordinate={location} onPress={onPress}>
+      <Button
+        title={pressed ? "loading ..." : name}
+        iconLeft
+        icon={{ name: "favorite", color: "white", size: 14 }}
+        fontSize={16}
+        borderRadius={5}
+        buttonStyle={{ height: 32 }}
+        backgroundColor="steelblue"
+      />
     </MapView.Marker>
   )
+
+  function onPress() {
+    setPressed(true)
+    setTimeout(function() {
+      navigation.navigate("DoctorScreen")
+      setPressed(false)
+    }, 500)
+  }
 }
