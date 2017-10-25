@@ -13,13 +13,27 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "lint": "eslint '**/*.js' --ignore-path .gitignore"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
+    "babel-eslint": "8.0.1",
+    "eslint": "^4.3.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jest": "^21.2.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-standard": "^3.0.1",
     "expo": "^21.0.0",
+    "prettier": "1.7.4",
+    "prettier-standard": "^7.0.1",
     "react": "16.0.0-alpha.12",
     "react-apollo": "^1.4.16",
     "react-native": "^0.48.4",
@@ -27,6 +41,10 @@
     "react-native-elements": "^0.17.0",
     "react-native-maps": "^0.17.1",
     "styled-components": "^2.2.2",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.0.0",
     "watchman": "^0.1.8"
   }
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapView } from 'expo';
+import React from "react"
+import { MapView } from "expo"
 
 export default function Map() {
   return (
@@ -11,7 +11,7 @@ export default function Map() {
         latitude: 37.78825,
         longitude: -122.4324,
         latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        longitudeDelta: 0.0421
       }}
     />
   )
