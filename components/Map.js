@@ -4,7 +4,7 @@ import { compose, lifecycle, withState } from "recompose"
 import MapDoctorPin from "./MapDoctorPin"
 
 export default compose(
-  withState("location", "setLocation", null),
+  withState("location", "setLocation", { latitude: 0, longitude: 0 }),
   lifecycle({
     componentWillMount() {
       navigator.geolocation.getCurrentPosition(
