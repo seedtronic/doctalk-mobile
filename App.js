@@ -1,8 +1,16 @@
 import React from "react"
-import Home from "./screens/Home"
+import { StackNavigator } from "react-navigation"
+import Map from "./screens/Map"
+import Search from "./screens/Search"
+import SearchButton from "./components/SearchButton"
 
-export default class App extends React.Component {
-  render() {
-    return <Home />
-  }
-}
+export default StackNavigator({
+  Map: {
+    screen: Map,
+    navigationOptions: {
+      title: "Escolha um médico",
+      headerRight: <SearchButton />
+    }
+  },
+  Search: { screen: Search }
+})
