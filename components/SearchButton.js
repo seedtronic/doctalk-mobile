@@ -15,11 +15,9 @@ function SearchButton({ navigation }) {
     <Container>
       <Button
         title=""
-        icon={{ name: "search", color: "white", size: 18 }}
-        fontSize={16}
-        borderRadius={5}
+        icon={{ name: "search", color: "steelblue", size: 24 }}
         buttonStyle={{ paddingRight: 3, height: 32 }}
-        backgroundColor="steelblue"
+        backgroundColor="transparent"
         onPress={onPress}
       />
     </Container>
