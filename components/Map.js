@@ -27,7 +27,7 @@ function Map({ location }) {
   return (
     <MapView
       provider={MapView.PROVIDER_GOOGLE}
-      style={{ flex: 1 }}
+      style={{ flex: 1, flexGrow: 1 }}
       showsUserLocation={true}
       region={{
         latitude: 0,

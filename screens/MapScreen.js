@@ -1,17 +1,12 @@
 import React from "react"
-import styled from "styled-components/native"
+import GenericScreen from "./GenericScreen"
 import Map from "../components/Map"
-
-const Container = styled.View`
-  flex-grow: 1;
-  height: 100%;
-  width: 100%;
-`
+import SearchButton from "../components/SearchButton"
 
 export default function() {
   return (
-    <Container>
+    <GenericScreen title="Escolha um médico" RightButton={SearchButton}>
       <Map />
-    </Container>
+    </GenericScreen>
   )
 }

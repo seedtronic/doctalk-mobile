@@ -1,8 +1,15 @@
 import React from "react"
-import { Button } from "react-native-elements"
+import styled from "styled-components/native"
+import { Button, Icon, Text } from "native-base"
 import { MapView } from "expo"
 import { withNavigation } from "react-navigation"
 import { compose, withState } from "recompose"
+
+const Tip = styled.View`
+  width: 50;
+  height: 50;
+  background-color: steelblue;
+`
 
 export default compose(
   withNavigation,
@@ -17,15 +24,11 @@ function MapDoctorPin({
 }) {
   return (
     <MapView.Marker coordinate={location} onPress={onPress}>
-      <Button
-        title={pressed ? "loading ..." : name}
-        iconLeft
-        icon={{ name: "favorite", color: "white", size: 14 }}
-        fontSize={16}
-        borderRadius={5}
-        buttonStyle={{ height: 32 }}
-        backgroundColor="steelblue"
-      />
+      <Button small iconLeft info>
+        <Icon name="heart" />
+        <Text>{pressed ? "loading ..." : name}</Text>
+      </Button>
+      <Tip style={{ transform: [{ rotate: "45deg" }] }} />
     </MapView.Marker>
   )
 
@@ -34,6 +37,6 @@ function MapDoctorPin({
     setTimeout(function() {
       navigation.navigate("DoctorScreen")
       setPressed(false)
-    }, 500)
+    }, 1000)
   }
 }
