@@ -1,6 +1,5 @@
 {
   "name": "doctalk",
-  "version": "0.1.12",
   "private": false,
   "devDependencies": {
     "jest-expo": "^21.0.2",
