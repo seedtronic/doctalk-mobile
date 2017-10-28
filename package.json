@@ -15,7 +15,7 @@
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "lint": "eslint '**/*.js' --ignore-path .gitignore",
-    "publish-expo": "exp publish --non-interactive"
+    "publish:expo": "exp publish --non-interactive"
   },
   "jest": {
     "preset": "jest-expo"
