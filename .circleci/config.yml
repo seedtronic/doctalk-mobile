@@ -17,7 +17,7 @@ jobs:
             - node_modules
           key: v2-dependencies-node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
       - run: yarn lint
-  release:
+  publish:
     docker:
       - image: circleci/node:8.1.4
     working_directory: ~/repo
@@ -31,13 +31,13 @@ jobs:
           paths:
             - node_modules
           key: v2-dependencies-node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
-      - run: yarn release
+      - run: yarn publish
 workflows:
   version: 2
   build:
     jobs:
       - test
-      - release:
+      - publish:
           requires:
             - test
           filters:
