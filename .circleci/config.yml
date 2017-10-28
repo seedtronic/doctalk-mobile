@@ -35,7 +35,9 @@ jobs:
           paths:
             - node_modules
           key: v2-dependencies-node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
-      - run: yarn publish
+      - run: |
+        exp login -u $EXP_USERNAME -p $EXP_PASSWORD
+        yarn publish
 workflows:
   version: 2
   build:
