@@ -1,7 +1,7 @@
 {
   "name": "doctalk",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.11",
+  "private": false,
   "devDependencies": {
     "jest-expo": "^21.0.2",
     "react-native-scripts": "1.5.0",
@@ -14,7 +14,8 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "lint": "eslint '**/*.js' --ignore-path .gitignore"
+    "lint": "eslint '**/*.js' --ignore-path .gitignore",
+    "publish": "exp publish"
   },
   "jest": {
     "preset": "jest-expo"
