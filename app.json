@@ -3,7 +3,6 @@
     "name": "Doctalk",
     "orientation": "portrait",
     "slug": "doctalk",
-    "sdkVersion": "21.0.0",
-    "version": "0.1.11"
+    "sdkVersion": "21.0.0"
   }
 }
