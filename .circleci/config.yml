@@ -19,7 +19,9 @@ jobs:
       - run: yarn lint
   release:
     docker:
-      - image: docker:stable-git
+      - image: circleci/node:8.1.4
+      - checkout
+    working_directory: ~/repo
     steps:
       - restore_cache:
           keys:
