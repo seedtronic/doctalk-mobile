@@ -44,7 +44,7 @@ jobs:
       - run:
           name: publish
           command: |
-            exp login -u $EXP_USERNAME -p $EXP_PASSWORD
+            ./node_modules/exp/bin/exp.js login -u $EXP_USERNAME -p $EXP_PASSWORD
             yarn publish
 workflows:
   version: 2
