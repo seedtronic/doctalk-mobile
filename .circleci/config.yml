@@ -49,6 +49,7 @@ jobs:
             ./node_modules/exp/bin/exp.js login -u $EXP_USERNAME -p $EXP_PASSWORD
             sudo npm install -g npm-cli-login
             npm-cli-login
+            yarn publish-expo
 workflows:
   version: 2
   build:
