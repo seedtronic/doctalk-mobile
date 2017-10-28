@@ -1,5 +1,9 @@
 {
   "expo": {
-    "sdkVersion": "21.0.0"
+    "name": "Doctalk",
+    "orientation": "portrait",
+    "slug": "doctalk",
+    "sdkVersion": "21.0.0",
+    "version": "0.1.11"
   }
 }
