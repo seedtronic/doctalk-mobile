@@ -44,6 +44,7 @@ jobs:
       - run:
           name: publish
           command: |
+            npm version patch -m "Bump version to %s"
             ./node_modules/exp/bin/exp.js login -u $EXP_USERNAME -p $EXP_PASSWORD
             yarn publish
 workflows:
