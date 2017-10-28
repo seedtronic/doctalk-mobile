@@ -33,10 +33,11 @@ function MapDoctorPin({
   )
 
   function onPress() {
+    if (pressed) {
+      return
+    }
     setPressed(true)
-    setTimeout(function() {
-      navigation.navigate("DoctorScreen")
-      setPressed(false)
-    }, 1000)
+    navigation.navigate("DoctorScreen")
+    setTimeout(() => setPressed(false), 1000)
   }
 }
