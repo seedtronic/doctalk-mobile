@@ -48,6 +48,8 @@ jobs:
             git config user.name "CircleCI"
             npm version patch -m "Bump version to %s"
             ./node_modules/exp/bin/exp.js login -u $EXP_USERNAME -p $EXP_PASSWORD
+            npm install -g npm-cli-login
+            npm-cli-login
             yarn publish
 workflows:
   version: 2
