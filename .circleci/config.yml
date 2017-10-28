@@ -8,6 +8,8 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run: echo 'export PATH=/foo/bin:$PATH' >> $BASH_ENV
+      - run: echo 'export PATH="$HOME/.yarn/bin:$PATH"' >> $BASH_ENV
       - restore_cache:
           keys:
             - v2-dependencies-node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
@@ -23,6 +25,8 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run: curl -o- -L https://yarnpkg.com/install.sh | bash
+      - run: echo 'export PATH="$HOME/.yarn/bin:$PATH"' >> $BASH_ENV
       - restore_cache:
           keys:
             - v2-dependencies-node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
