@@ -20,10 +20,13 @@ function MapDoctorPin({
   navigation,
   pressed,
   setPressed,
-  doctor: { name, location }
+  doctor: { name, lat, lng }
 }) {
   return (
-    <MapView.Marker coordinate={location} onPress={onPress}>
+    <MapView.Marker
+      coordinate={{ latitude: lat, longitude: lng }}
+      onPress={onPress}
+    >
       <Button small iconLeft info>
         <Icon name="heart" />
         <Text>{pressed ? "loading ..." : name}</Text>

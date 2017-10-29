@@ -1,7 +1,9 @@
 import React from "react"
+import { graphql } from "react-apollo"
 import { MapView } from "expo"
-import { compose, lifecycle, withState } from "recompose"
+import { compose, lifecycle, withProps, withState } from "recompose"
 import MapDoctorPin from "./MapDoctorPin"
+import doctorsQuery from "../graphql/doctorsQuery"
 
 export default compose(
   withState("location", "setLocation", { latitude: 0, longitude: 0 }),
@@ -12,18 +14,16 @@ export default compose(
           this.props.setLocation({ latitude, longitude })
       )
     }
+  }),
+  graphql(doctorsQuery),
+  withProps(({ data: { doctors: { edges } } }) => {
+    return {
+      doctors: (edges || []).map(({ node }) => node)
+    }
   })
 )(Map)
 
-function Map({ location }) {
-  const doctors = [
-    {
-      id: 1,
-      name: "Augusto",
-      location: { latitude: -22.94019, longitude: -43.175571 }
-    }
-  ]
-
+function Map({ location, doctors }) {
   return (
     <MapView
       provider={MapView.PROVIDER_GOOGLE}
