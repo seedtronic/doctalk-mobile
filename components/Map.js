@@ -16,9 +16,9 @@ export default compose(
     }
   }),
   graphql(doctorsQuery),
-  withProps(({ data: { doctors: { edges } } }) => {
+  withProps(({ data: { doctors } }) => {
     return {
-      doctors: (edges || []).map(({ node }) => node)
+      doctors: (doctors ? doctors.edges : []).map(({ node }) => node)
     }
   })
 )(Map)
