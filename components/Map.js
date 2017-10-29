@@ -23,16 +23,15 @@ export default compose(
   })
 )(Map)
 
-function Map({ location, doctors }) {
+function Map({ location, doctors, location: { latitude, longitude } }) {
   return (
     <MapView
       provider={MapView.PROVIDER_GOOGLE}
       style={{ flex: 1, flexGrow: 1 }}
       showsUserLocation={true}
       region={{
-        latitude: 0,
-        longitude: 0,
-        ...location,
+        latitude,
+        longitude,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
       }}
