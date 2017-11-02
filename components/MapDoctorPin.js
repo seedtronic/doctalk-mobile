@@ -11,6 +11,7 @@ const Tip = styled.View`
   background-color: steelblue;
 `
 
+
 export default compose(
   withNavigation,
   withState("pressed", "setPressed", false)
@@ -26,12 +27,13 @@ function MapDoctorPin({
     <MapView.Marker
       coordinate={{ latitude: lat, longitude: lng }}
       onPress={onPress}
+      image={require('../assets/google-maps.png')}
     >
       <Button small iconLeft info>
         <Icon name="heart" />
         <Text>{pressed ? "loading ..." : name}</Text>
       </Button>
-      <Tip style={{ transform: [{ rotate: "45deg" }] }} />
+      
     </MapView.Marker>
   )
 
