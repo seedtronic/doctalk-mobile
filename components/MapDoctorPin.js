@@ -5,13 +5,6 @@ import { MapView } from "expo"
 import { withNavigation } from "react-navigation"
 import { compose, withState } from "recompose"
 
-const Tip = styled.View`
-  width: 50;
-  height: 50;
-  background-color: steelblue;
-`
-
-
 export default compose(
   withNavigation,
   withState("pressed", "setPressed", false)
@@ -27,13 +20,13 @@ function MapDoctorPin({
     <MapView.Marker
       coordinate={{ latitude: lat, longitude: lng }}
       onPress={onPress}
-      image={require('../assets/google-maps.png')}
+      image={require("../assets/google-maps.png")}
     >
       <Button small iconLeft info>
         <Icon name="heart" />
         <Text>{pressed ? "loading ..." : name}</Text>
       </Button>
-      
+
     </MapView.Marker>
   )
 
