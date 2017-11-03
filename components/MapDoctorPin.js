@@ -1,5 +1,4 @@
 import React from "react"
-import styled from "styled-components/native"
 import { Button, Icon, Text } from "native-base"
 import { MapView } from "expo"
 import { withNavigation } from "react-navigation"
@@ -26,7 +25,6 @@ function MapDoctorPin({
         <Icon name="heart" />
         <Text>{pressed ? "loading ..." : name}</Text>
       </Button>
-
     </MapView.Marker>
   )
 
