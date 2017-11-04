@@ -1,10 +1,9 @@
 import React from "react"
-import { compose, withProps} from "recompose"
+import { compose, withProps } from "recompose"
 import { graphql } from "react-apollo"
 import specialtiesQuery from "../graphql/specialtiesQuery"
 import { List, ListItem } from "native-base"
-import ButtonSpecialtiesList from './ButtonSpecialtiesList';
-
+import ButtonSpecialtiesList from "./ButtonSpecialtiesList"
 
 export default compose(
   graphql(specialtiesQuery),
