@@ -1,13 +1,18 @@
 import React from "react"
 import { Text, TouchableOpacity } from "react-native"
+import { withNavigation } from "react-navigation"
+import { compose } from "recompose"
 
-const ButtonSpecialtiesList = ({ onPress, children }) => {
+const ButtonSpecialtiesList = ({ children, navigation }) => {
   const { buttonStyle, textStyle } = styles
   return (
     <TouchableOpacity onPress={onPress} style={buttonStyle}>
       <Text style={textStyle}>{children}</Text>
     </TouchableOpacity>
   )
+  function onPress() {
+    navigation.navigate("MapScreen")
+  }
 }
 
 const styles = {
@@ -31,5 +36,4 @@ const styles = {
     marginRight: 5
   }
 }
-
-export default ButtonSpecialtiesList
+export default compose(withNavigation)(ButtonSpecialtiesList)

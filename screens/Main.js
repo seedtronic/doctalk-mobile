@@ -20,6 +20,13 @@ const SearchScreenNavigator = StackNavigator(
   { headerMode: "none" }
 )
 
+// const MapScreenNavigator = StackNavigator(
+//   {
+//     MapScreen: { screen: MapScreen }
+//   },
+//   { headerMode: "none" }
+// )
+
 const RootNavigator = StackNavigator(
   {
     MainNavigator: { screen: MainNavigator },
