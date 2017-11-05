@@ -18,11 +18,12 @@ export default compose(
 
 function SpecialtiesList({ specialties, navigation }) {
   return <List dataArray={specialties} renderRow={renderRow} />
-  function renderRow(specialty) {
-    return (
-      <ListItem>
-        <ButtonSpecialtiesList>{specialty.title}</ButtonSpecialtiesList>
-      </ListItem>
-    )
-  }
+}
+
+function renderRow(specialty) {
+  return (
+    <ListItem>
+      <ButtonSpecialtiesList>{specialty.title}</ButtonSpecialtiesList>
+    </ListItem>
+  )
 }
