@@ -1,7 +1,9 @@
 import React from "react"
+import { connect } from "react-redux"
 import styled from "styled-components/native"
 import { withNavigation } from "react-navigation"
 import { compose } from "recompose"
+import { setSpecialtyId } from "../lib/reducers/mapFilter"
 
 const Container = styled.TouchableOpacity`
   flex: 1;
@@ -22,15 +24,18 @@ const SpecialtyTitle = styled.Text`
   padding-bottom: 10;
 `
 
-function SpecialtyListItem({ specialty, navigation }) {
+function SpecialtyListItem({ specialty, setSpecialtyId, navigation }) {
   return (
     <Container onPress={onPress}>
       <SpecialtyTitle>{specialty.title}</SpecialtyTitle>
     </Container>
   )
   function onPress() {
+    setSpecialtyId(specialty.id)
     navigation.goBack(null)
   }
 }
 
-export default compose(withNavigation)(SpecialtyListItem)
+export default compose(withNavigation, connect(null, { setSpecialtyId }))(
+  SpecialtyListItem
+)
