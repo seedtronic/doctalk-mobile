@@ -5,6 +5,16 @@ import { compose, withProps } from "recompose"
 import { setSpecialtyId } from "../lib/reducers/mapFilter"
 import { ListItem, Text } from "native-base"
 
+export default compose(
+  withNavigation,
+  connect(({ mapFilter: { specialtyId } }) => ({ specialtyId }), {
+    setSpecialtyId
+  }),
+  withProps(({ specialty, specialtyId }) => ({
+    isSelected: specialty.id === specialtyId
+  }))
+)(SpecialtiesListItem)
+
 function SpecialtiesListItem({
   specialty,
   isSelected,
@@ -30,13 +40,3 @@ function SpecialtiesListItem({
     }
   }
 }
-
-export default compose(
-  withNavigation,
-  connect(({ mapFilter: { specialtyId } }) => ({ specialtyId }), {
-    setSpecialtyId
-  }),
-  withProps(({ specialty, specialtyId }) => ({
-    isSelected: specialty.id === specialtyId
-  }))
-)(SpecialtiesListItem)
