@@ -1,3 +1,4 @@
+import "./ReactotronConfig.js"
 import React from "react"
 import { ApolloProvider } from "react-apollo"
 import apolloClient from "./lib/apolloClient"
