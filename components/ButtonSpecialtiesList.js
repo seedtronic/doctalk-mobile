@@ -11,7 +11,7 @@ const ButtonSpecialtiesList = ({ children, navigation }) => {
     </TouchableOpacity>
   )
   function onPress() {
-    navigation.navigate("MapScreen")
+    navigation.goBack(null)
   }
 }
 
