@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from "react-native"
 import { withNavigation } from "react-navigation"
 import { compose } from "recompose"
 
-const ButtonSpecialtiesList = ({ children, navigation }) => {
+const SpecialtyListItem = ({ children, navigation }) => {
   const { buttonStyle, textStyle } = styles
   return (
     <TouchableOpacity onPress={onPress} style={buttonStyle}>
@@ -36,4 +36,4 @@ const styles = {
     marginRight: 5
   }
 }
-export default compose(withNavigation)(ButtonSpecialtiesList)
+export default compose(withNavigation)(SpecialtyListItem)
