@@ -22,10 +22,10 @@ const SpecialtyTitle = styled.Text`
   padding-bottom: 10;
 `
 
-function SpecialtyListItem({ children, navigation }) {
+function SpecialtyListItem({ specialty, navigation }) {
   return (
     <Container onPress={onPress}>
-      <SpecialtyTitle>{children}</SpecialtyTitle>
+      <SpecialtyTitle>{specialty.title}</SpecialtyTitle>
     </Container>
   )
   function onPress() {

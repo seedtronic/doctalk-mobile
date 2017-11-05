@@ -23,7 +23,7 @@ function SpecialtiesList({ specialties, navigation }) {
 function renderRow(specialty) {
   return (
     <ListItem>
-      <SpecialtyListItem>{specialty.title}</SpecialtyListItem>
+      <SpecialtyListItem specialty={specialty} />
     </ListItem>
   )
 }
