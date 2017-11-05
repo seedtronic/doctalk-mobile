@@ -30,7 +30,7 @@ function MapDoctorPin({
   navigation,
   pressed,
   setPressed,
-  doctor: { name, lat, lng, imageUrl }
+  doctor: { id, name, lat, lng, imageUrl }
 }) {
   return (
     <MapView.Marker
@@ -50,7 +50,7 @@ function MapDoctorPin({
       return
     }
     setPressed(true)
-    navigation.navigate("DoctorScreen")
+    navigation.navigate("DoctorScreen", { doctorId: id })
     setTimeout(() => setPressed(false), 1000)
   }
 }

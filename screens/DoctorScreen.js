@@ -1,11 +1,20 @@
 import React from "react"
-import { Text } from "react-native"
+import { withNavigation } from "react-navigation"
+import { compose, withProps } from "recompose"
 import GenericScreen from "./GenericScreen"
+import DoctorProfile from "../components/DoctorProfile"
 
-export default function DoctorScreen() {
+export default compose(
+  withNavigation,
+  withProps(({ navigation }) => ({
+    doctorId: navigation.state.params.doctorId
+  }))
+)(DoctorScreen)
+
+function DoctorScreen({ doctorId }) {
   return (
     <GenericScreen title="Médico">
-      <Text>Alou!</Text>
+      <DoctorProfile doctorId={doctorId} />
     </GenericScreen>
   )
 }
