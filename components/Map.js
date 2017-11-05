@@ -23,7 +23,7 @@ export default compose(
   })
 )(Map)
 
-function Map({ location, doctors, location: { latitude, longitude } }) {
+function Map({ doctors, location: { latitude, longitude } }) {
   return (
     <MapView
       provider={MapView.PROVIDER_GOOGLE}
