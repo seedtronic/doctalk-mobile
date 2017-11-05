@@ -35,7 +35,9 @@ function SpecialtiesListItem({
   function style() {
     if (isSelected) {
       return {
-        backgroundColor: "#62b1f6"
+        backgroundColor: "#62b1f6",
+        marginLeft: 0,
+        paddingLeft: 15
       }
     }
   }
