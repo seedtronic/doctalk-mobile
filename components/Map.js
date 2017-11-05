@@ -1,4 +1,5 @@
 import React from "react"
+import { connect } from "react-redux"
 import { graphql } from "react-apollo"
 import { MapView } from "expo"
 import { compose, lifecycle, withProps, withState } from "recompose"
@@ -15,6 +16,7 @@ export default compose(
       )
     }
   }),
+  connect(({ mapFilter: { specialtyId } }) => ({ specialtyId })),
   graphql(doctorsQuery),
   withProps(({ data: { doctors } }) => {
     return {
