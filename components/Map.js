@@ -36,8 +36,8 @@ function Map({ doctors, location: { latitude, longitude } }) {
       style={{ flex: 1, flexGrow: 1 }}
       showsUserLocation={true}
       region={{
-        latitude,
-        longitude,
+        latitude: -22.944429,
+        longitude: -43.162029,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
       }}

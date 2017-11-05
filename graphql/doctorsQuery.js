@@ -9,6 +9,7 @@ export default gql`
           name
           lat
           lng
+          imageUrl
         }
       }
     }
