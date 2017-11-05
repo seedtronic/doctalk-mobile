@@ -5,7 +5,7 @@ import { compose } from "recompose"
 import { setSpecialtyId } from "../lib/reducers/mapFilter"
 import { ListItem, Text } from "native-base"
 
-function SpecialtyListItem({ specialty, setSpecialtyId, navigation }) {
+function SpecialtiesListItem({ specialty, setSpecialtyId, navigation }) {
   return (
     <ListItem onPress={onPress}>
       <Text>{specialty.title}</Text>
@@ -18,5 +18,5 @@ function SpecialtyListItem({ specialty, setSpecialtyId, navigation }) {
 }
 
 export default compose(withNavigation, connect(null, { setSpecialtyId }))(
-  SpecialtyListItem
+  SpecialtiesListItem
 )

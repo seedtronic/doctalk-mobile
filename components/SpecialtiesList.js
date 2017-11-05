@@ -3,7 +3,7 @@ import { compose, withProps } from "recompose"
 import { graphql } from "react-apollo"
 import specialtiesQuery from "../graphql/specialtiesQuery"
 import { List } from "native-base"
-import SpecialtyListItem from "./SpecialtyListItem"
+import SpecialtiesListItem from "./SpecialtiesListItem"
 
 export default compose(
   graphql(specialtiesQuery),
@@ -27,5 +27,5 @@ function SpecialtiesList({ specialties, navigation }) {
 }
 
 function renderRow(specialty) {
-  return <SpecialtyListItem specialty={specialty} />
+  return <SpecialtiesListItem specialty={specialty} />
 }
