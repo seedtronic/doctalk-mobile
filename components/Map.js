@@ -17,7 +17,11 @@ export default compose(
     }
   }),
   connect(({ mapFilter: { specialtyId } }) => ({ specialtyId })),
-  graphql(doctorsQuery),
+  graphql(doctorsQuery, {
+    options: {
+      fetchPolicy: "cache-and-network"
+    }
+  }),
   withProps(({ data: { doctors } }) => {
     return {
       doctors: (doctors ? doctors.edges : []).map(({ node }) => node)
