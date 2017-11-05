@@ -1,8 +1,8 @@
 import gql from "graphql-tag"
 
 export default gql`
-  query DoctorsQuery {
-    doctors {
+  query DoctorsQuery($specialtyId: ID) {
+    doctors(specialtyId: $specialtyId) {
       edges {
         node {
           id
