@@ -13,12 +13,14 @@ function SpecialtiesListItem({
 }) {
   return (
     <ListItem onPress={onPress} style={style()}>
-      <Text>{specialty.title}</Text>
+      <Text style={{ color: isSelected ? "white" : "black" }}>
+        {specialty.title}
+      </Text>
     </ListItem>
   )
   function onPress() {
     setSpecialtyId(specialty.id)
-    setTimeout(() => navigation.goBack(null), 500)
+    setTimeout(() => navigation.goBack(null), 400)
   }
   function style() {
     if (isSelected) {
