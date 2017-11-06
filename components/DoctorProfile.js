@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components/native"
-import { Button, Text } from "native-base"
+import { Button } from "native-base"
 
 const Container = styled.View`
   flex-direction: column;
@@ -26,6 +26,10 @@ const Image = styled.Image`
   width: 100%;
   height: 200;
 `
+const ButtonText = styled.Text`
+  color: white;
+  font-size: 24;
+`
 
 export default function DoctorProfile({ doctor: { name, imageUrl } }) {
   return (
@@ -38,7 +42,7 @@ export default function DoctorProfile({ doctor: { name, imageUrl } }) {
       </NameContainer>
       <ButtonContainer>
         <Button full>
-          <Text>Marcar consulta</Text>
+          <ButtonText>Marcar consulta</ButtonText>
         </Button>
       </ButtonContainer>
     </Container>

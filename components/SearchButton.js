@@ -1,14 +1,15 @@
 import React from "react"
-import { Button, Icon } from "native-base"
+import { Button } from "native-base"
 import { compose } from "recompose"
 import { withNavigation } from "react-navigation"
+import { MaterialIcons } from "@expo/vector-icons"
 
 export default compose(withNavigation)(SearchButton)
 
 function SearchButton({ navigation }) {
   return (
     <Button onPress={onPress} transparent>
-      <Icon name="search" />
+      <MaterialIcons name="search" size={26} color="#2874F0" />
     </Button>
   )
 

@@ -1,14 +1,14 @@
 import React from "react"
 import { withNavigation } from "react-navigation"
 import { Button } from "native-base"
-import { Ionicons } from "@expo/vector-icons"
+import { MaterialIcons } from "@expo/vector-icons"
 
 export default withNavigation(BackButton)
 
 function BackButton({ navigation }) {
   return (
     <Button onPress={onPress} transparent>
-      <Ionicons name="ios-arrow-back" size={24} color="#62b1f6" />
+      <MaterialIcons name="chevron-left" size={28} color="#2874F0" />
     </Button>
   )
 

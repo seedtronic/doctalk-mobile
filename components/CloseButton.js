@@ -1,13 +1,14 @@
 import React from "react"
 import { withNavigation } from "react-navigation"
-import { Button, Icon } from "native-base"
+import { Button } from "native-base"
+import { MaterialIcons } from "@expo/vector-icons"
 
 export default withNavigation(CloseButton)
 
 function CloseButton({ navigation }) {
   return (
     <Button onPress={onPress} transparent>
-      <Icon name="close" />
+      <MaterialIcons name="close" size={26} color="#2874F0" />
     </Button>
   )
 
