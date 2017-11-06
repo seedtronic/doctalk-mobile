@@ -5,7 +5,7 @@ import CloseButton from "../components/CloseButton"
 
 export default function SearchScreen() {
   return (
-    <GenericScreen title="Escolha uma especialidade" RightButton={CloseButton}>
+    <GenericScreen title="Escolha a especialidade" RightButton={CloseButton}>
       <SpecialtiesList />
     </GenericScreen>
   )
