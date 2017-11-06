@@ -1,9 +1,6 @@
 import React from "react"
 import styled from "styled-components/native"
 import { Button, Text } from "native-base"
-import { branch, compose, renderNothing, withProps } from "recompose"
-import { graphql } from "react-apollo"
-import doctorQuery from "../graphql/doctorQuery"
 
 const Container = styled.View`
   flex-direction: column;
@@ -30,13 +27,7 @@ const Image = styled.Image`
   height: 200;
 `
 
-export default compose(
-  graphql(doctorQuery),
-  branch(({ data }) => data.loading, renderNothing),
-  withProps(({ data: { doctor } }) => ({ doctor }))
-)(DoctorProfile)
-
-function DoctorProfile({ doctor: { name, imageUrl } }) {
+export default function DoctorProfile({ doctor: { name, imageUrl } }) {
   return (
     <Container>
       <ImageContainer>
