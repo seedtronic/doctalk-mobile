@@ -11,7 +11,7 @@ export default function({ title, RightButton, children }) {
     <Container>
       <Header>
         <Left />
-        <Body style={{ flex: 3 }}>
+        <Body style={{ flex: 4 }}>
           <Title>{title}</Title>
         </Body>
         <Right>{RightButton && <RightButton />}</Right>
