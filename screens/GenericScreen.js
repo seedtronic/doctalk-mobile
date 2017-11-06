@@ -6,11 +6,17 @@ const Content = styled.View`
   flex: 1;
 `
 
-export default function({ title, TitleComponent, RightButton, children }) {
+export default function({
+  title,
+  TitleComponent,
+  LeftButton,
+  RightButton,
+  children
+}) {
   return (
     <Container>
       <Header>
-        <Left />
+        <Left>{LeftButton && <LeftButton />}</Left>
         <Body style={{ flex: 4 }}>{renderTitle()}</Body>
         <Right>{RightButton && <RightButton />}</Right>
       </Header>
