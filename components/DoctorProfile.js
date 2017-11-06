@@ -13,15 +13,13 @@ const Container = styled.View`
 const ImageContainer = styled.View``
 const NameContainer = styled.View`
   flex-grow: 1;
-  margin-left: 20;
+  margin-left: 10;
   margin-top: 20;
 `
 const ButtonContainer = styled.View`
-  align-self: center;
   padding-left: 10;
   padding-right: 10;
   margin-bottom: 10;
-  width: 100%;
 `
 
 const Name = styled.Text`
@@ -48,7 +46,7 @@ function DoctorProfile({ doctor: { name, imageUrl } }) {
         <Name>{name}</Name>
       </NameContainer>
       <ButtonContainer>
-        <Button style={{ width: "100%" }}>
+        <Button full>
           <Text>Marcar consulta</Text>
         </Button>
       </ButtonContainer>
