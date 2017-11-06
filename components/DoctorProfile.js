@@ -41,7 +41,7 @@ export default function DoctorProfile({ doctor: { name, imageUrl } }) {
         <Name>{name}</Name>
       </NameContainer>
       <ButtonContainer>
-        <Button full>
+        <Button block>
           <ButtonText>Marcar consulta</ButtonText>
         </Button>
       </ButtonContainer>
