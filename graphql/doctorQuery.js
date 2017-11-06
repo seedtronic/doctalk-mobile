@@ -8,6 +8,9 @@ export default gql`
       lat
       lng
       imageUrl
+      specialty {
+        title
+      }
     }
   }
 `

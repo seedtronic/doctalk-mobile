@@ -19,7 +19,7 @@ export default compose(
 
 function DoctorScreen({ doctor }) {
   return (
-    <GenericScreen title="Médico">
+    <GenericScreen title={doctor.specialty.title}>
       <DoctorProfile doctor={doctor} />
     </GenericScreen>
   )
