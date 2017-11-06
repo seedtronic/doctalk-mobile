@@ -37,7 +37,7 @@ function MapDoctorPin({
       coordinate={{ latitude: lat, longitude: lng }}
       onPress={onPress}
     >
-      <Button small iconLeft info>
+      <Button small iconLeft info style={{ borderRadius: 0 }}>
         <Image source={{ uri: imageUrl }} />
         <Text>{pressed ? "loading ..." : name}</Text>
       </Button>
