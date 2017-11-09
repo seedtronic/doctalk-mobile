@@ -5,6 +5,7 @@ import { MapView } from "expo"
 import { compose, lifecycle, withProps, withState } from "recompose"
 import MapDoctorPin from "./MapDoctorPin"
 import doctorsQuery from "../graphql/doctorsQuery"
+import { setLoading } from "../lib/reducers/mapFilter"
 
 export default compose(
   withState("location", "setLocation", { latitude: 0, longitude: 0 }),
@@ -22,6 +23,12 @@ export default compose(
       fetchPolicy: "cache-and-network"
     }
   }),
+  connect(null, { setLoading }),
+  lifecycle({
+    componentWillReceiveProps(nextProps) {
+      nextProps.setLoading(nextProps.data.loading)
+    }
+  }),
   withProps(({ data: { doctors } }) => {
     return {
       doctors: (doctors ? doctors.edges : []).map(({ node }) => node)
@@ -29,7 +36,7 @@ export default compose(
   })
 )(Map)
 
-function Map({ doctors, location: { latitude, longitude } }) {
+function Map({ doctors, loading, location: { latitude, longitude } }) {
   return (
     <MapView
       provider={MapView.PROVIDER_GOOGLE}

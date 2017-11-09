@@ -1,10 +1,24 @@
 import React from "react"
+import { connect } from "react-redux"
 import { Button } from "native-base"
-import { compose } from "recompose"
+import { branch, compose, renderComponent } from "recompose"
 import { withNavigation } from "react-navigation"
 import { MaterialIcons } from "@expo/vector-icons"
+import Spinner from "./Spinner"
 
-export default compose(withNavigation)(SearchButton)
+export default compose(
+  connect(({ mapFilter: { loading } }) => ({ loading })),
+  branch(({ loading }) => loading, renderComponent(LoadingButton)),
+  withNavigation
+)(SearchButton)
+
+function LoadingButton() {
+  return (
+    <Button transparent>
+      <Spinner />
+    </Button>
+  )
+}
 
 function SearchButton({ navigation }) {
   return (
