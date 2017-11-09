@@ -27,5 +27,5 @@ function DoctorScreen({ doctor }) {
 }
 
 function Loading() {
-  return <GenericScreen TitleComponent={Spinner} />
+  return <GenericScreen LeftButton={BackButton} TitleComponent={Spinner} />
 }
