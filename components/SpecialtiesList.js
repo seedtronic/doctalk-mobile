@@ -1,18 +1,31 @@
 import React from "react"
-import { View } from "react-native"
+import { compose, withProps } from "recompose"
+import { graphql } from "react-apollo"
 import { List } from "native-base"
-import SpecialtyListItems from "./SpecialtyListItems"
+import specialtiesQuery from "../graphql/specialtiesQuery"
 import SpecialtiesListItem from "./SpecialtiesListItem"
 
-export default function SpecialtiesList() {
+export default compose(
+  graphql(specialtiesQuery),
+  withProps(({ data: { specialties } }) => {
+    return {
+      specialties: (specialties ? specialties.edges : []).map(
+        ({ node }) => node
+      )
+    }
+  })
+)(SpecialtyListItems)
+
+function SpecialtyListItems({ specialties }) {
   return (
-    <View>
-      <List style={{ backgroundColor: "white" }}>
-        <SpecialtiesListItem
-          specialty={{ id: null, title: "Todas as especialidades" }}
-        />
-      </List>
-      <SpecialtyListItems />
-    </View>
+    <List
+      style={{ backgroundColor: "white" }}
+      dataArray={specialties}
+      renderRow={renderRow}
+    />
   )
+}
+
+function renderRow(specialty) {
+  return <SpecialtiesListItem specialty={specialty} />
 }
