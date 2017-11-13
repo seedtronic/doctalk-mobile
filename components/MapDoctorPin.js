@@ -1,4 +1,5 @@
 import React from "react"
+import { connect } from "react-redux"
 import styled from "styled-components/native"
 import { Button, Text } from "native-base"
 import { MapView } from "expo"
@@ -23,13 +24,15 @@ const Tip = styled.View`
 
 export default compose(
   withNavigation,
-  withState("pressed", "setPressed", false)
+  withState("pressed", "setPressed", false),
+  connect(({ map: { region } }) => ({ region }))
 )(MapDoctorPin)
 
 function MapDoctorPin({
   navigation,
   pressed,
   setPressed,
+  region,
   doctor: { id, name, lat, lng, imageUrl }
 }) {
   return (
