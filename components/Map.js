@@ -20,10 +20,7 @@ export default compose(
       }
     }
   }),
-  connect(({ map: { region }, mapFilter: { specialtyId } }) => ({
-    region,
-    specialtyId
-  })),
+  connect(({ mapFilter: { specialtyId } }) => ({ specialtyId })),
   graphql(doctorsQuery, {
     options: {
       fetchPolicy: "cache-and-network"
