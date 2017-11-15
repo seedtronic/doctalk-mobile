@@ -1,7 +1,7 @@
 import React from "react"
 import { branch, compose, renderComponent } from "recompose"
 import { connect } from "react-redux"
-import { Text } from "native-base"
+import { Title } from "native-base"
 
 export default compose(
   connect(({ mapFilter: { loading } }) => ({ loading })),
@@ -9,9 +9,9 @@ export default compose(
 )(MapTitle)
 
 export function LoadingMessage() {
-  return <Text>Buscando médicos</Text>
+  return <Title>Buscando médicos</Title>
 }
 
 export function MapTitle() {
-  return <Text>Escolha um médico</Text>
+  return <Title>Escolha um médico</Title>
 }

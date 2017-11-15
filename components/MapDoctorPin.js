@@ -1,26 +1,9 @@
 import React from "react"
 import { connect } from "react-redux"
-import styled from "styled-components/native"
-import { Button, Text } from "native-base"
 import { MapView } from "expo"
 import { withNavigation } from "react-navigation"
 import { compose, withState } from "recompose"
-
-const Image = styled.Image`
-  width: 30;
-  height: 30;
-`
-
-const Tip = styled.View`
-  width: 30;
-  height: 30;
-  background-color: #62b1f6;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: -20;
-  align-items: center;
-  z-index: -1;
-`
+import DoctorMarker from "./DoctorMarker"
 
 export default compose(
   withNavigation,
@@ -28,23 +11,13 @@ export default compose(
   connect(({ map: { region } }) => ({ region }))
 )(MapDoctorPin)
 
-function MapDoctorPin({
-  navigation,
-  pressed,
-  setPressed,
-  region,
-  doctor: { id, name, lat, lng, imageUrl }
-}) {
+function MapDoctorPin({ navigation, pressed, setPressed, region, doctor }) {
   return (
     <MapView.Marker
-      coordinate={{ latitude: lat, longitude: lng }}
+      coordinate={{ latitude: doctor.lat, longitude: doctor.lng }}
       onPress={onPress}
     >
-      <Button small iconLeft info style={{ borderRadius: 0 }}>
-        <Image source={{ uri: imageUrl }} />
-        <Text>{pressed ? "loading ..." : name}</Text>
-      </Button>
-      <Tip style={{ transform: [{ rotate: "45deg" }] }} />
+      <DoctorMarker doctor={doctor} />
     </MapView.Marker>
   )
 
@@ -53,7 +26,7 @@ function MapDoctorPin({
       return
     }
     setPressed(true)
-    navigation.navigate("DoctorScreen", { doctorId: id })
+    navigation.navigate("DoctorScreen", { doctorId: doctor.id })
     setTimeout(() => setPressed(false), 1000)
   }
 }

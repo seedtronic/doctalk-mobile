@@ -9,16 +9,21 @@ import { setLoading } from "../lib/reducers/mapFilter"
 import { setRegion } from "../lib/reducers/map"
 
 export default compose(
-  connect(null, { setRegion }),
+  connect(({ map: { region } }) => ({ region }), { setRegion }),
   lifecycle({
     componentWillMount() {
-      navigator.geolocation.getCurrentPosition(
-        ({ coords: { latitude, longitude } }) =>
-          this.props.setRegion({ latitude, longitude })
-      )
+      if (!this.props.region) {
+        navigator.geolocation.getCurrentPosition(
+          ({ coords: { latitude, longitude } }) =>
+            this.props.setRegion({ latitude, longitude })
+        )
+      }
     }
   }),
-  connect(({ mapFilter: { specialtyId } }) => ({ specialtyId })),
+  connect(({ map: { region }, mapFilter: { specialtyId } }) => ({
+    region,
+    specialtyId
+  })),
   graphql(doctorsQuery, {
     options: {
       fetchPolicy: "cache-and-network"
@@ -34,8 +39,7 @@ export default compose(
     return {
       doctors: (doctors ? doctors.edges : []).map(({ node }) => node)
     }
-  }),
-  connect(({ map: { region } }) => ({ region }))
+  })
 )(Map)
 
 function Map({ doctors, loading, setRegion, region }) {
