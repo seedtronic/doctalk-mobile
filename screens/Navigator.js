@@ -20,7 +20,7 @@ const SearchScreenNavigator = StackNavigator(
   { headerMode: "none" }
 )
 
-export const RootNavigator = StackNavigator(
+export const ModalStack = StackNavigator(
   {
     MainNavigator: { screen: MainNavigator },
     SearchScreenNavigator: { screen: SearchScreenNavigator }
@@ -33,4 +33,4 @@ export default compose(
   mapProps(({ dispatch, state }) => ({
     navigation: addNavigationHelpers({ dispatch, state })
   }))
-)(RootNavigator)
+)(ModalStack)
