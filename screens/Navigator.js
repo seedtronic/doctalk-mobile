@@ -1,4 +1,6 @@
-import { StackNavigator } from "react-navigation"
+import { connect } from "react-redux"
+import { compose, mapProps } from "recompose"
+import { addNavigationHelpers, StackNavigator } from "react-navigation"
 import MapScreen from "./MapScreen"
 import SearchScreen from "./SearchScreen"
 import DoctorScreen from "./DoctorScreen"
@@ -18,10 +20,17 @@ const SearchScreenNavigator = StackNavigator(
   { headerMode: "none" }
 )
 
-export default StackNavigator(
+export const RootNavigator = StackNavigator(
   {
     MainNavigator: { screen: MainNavigator },
     SearchScreenNavigator: { screen: SearchScreenNavigator }
   },
   { headerMode: "none", mode: "modal" }
 )
+
+export default compose(
+  connect(state => ({ state: state.navigation })),
+  mapProps(({ dispatch, state }) => ({
+    navigation: addNavigationHelpers({ dispatch, state })
+  }))
+)(RootNavigator)
