@@ -7,7 +7,8 @@ import {
   compose,
   lifecycle,
   renderComponent,
-  withProps
+  withProps,
+  withState
 } from "recompose"
 import MapDoctorPin from "./MapDoctorPin"
 import SpinnerView from "./SpinnerView"
@@ -49,7 +50,11 @@ export default compose(
     }
   }),
   connect(null, { setLoading }),
+  withState("mapReady", "setMapReady", false),
   lifecycle({
+    componentWillMount() {
+      setTimeout(() => this.setState({ mapReady: true }), 100)
+    },
     componentWillReceiveProps(nextProps) {
       if (this.props.loading !== nextProps.loading) {
         nextProps.setLoading(nextProps.data.loading)
@@ -58,16 +63,22 @@ export default compose(
   })
 )(Map)
 
-function Map({ doctors, setRegion, map: { region } }) {
+function Map({ mapReady, doctors, setRegion, map: { region } }) {
   return (
     <MapView
       provider={MapView.PROVIDER_GOOGLE}
       style={{ flex: 1, flexGrow: 1 }}
       showsUserLocation={true}
       region={region}
-      onRegionChangeComplete={setRegion}
+      onRegionChange={onRegionChange}
     >
       {doctors.map(doctor => <MapDoctorPin key={doctor.id} doctor={doctor} />)}
     </MapView>
   )
+
+  function onRegionChange(region) {
+    if (mapReady) {
+      setRegion(region)
+    }
+  }
 }
