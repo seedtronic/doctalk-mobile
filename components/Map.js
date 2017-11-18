@@ -7,6 +7,7 @@ import {
   compose,
   lifecycle,
   renderComponent,
+  withHandlers,
   withProps,
   withState
 } from "recompose"
@@ -51,6 +52,10 @@ export default compose(
   }),
   connect(null, { setLoading }),
   withState("mapReady", "setMapReady", false),
+  withHandlers({
+    setRegion: ({ mapReady, setRegion }) => region =>
+      mapReady && setRegion(region)
+  }),
   lifecycle({
     componentWillMount() {
       setTimeout(() => this.setState({ mapReady: true }), 100)
@@ -63,22 +68,16 @@ export default compose(
   })
 )(Map)
 
-function Map({ mapReady, doctors, setRegion, map: { region } }) {
+function Map({ doctors, setRegion, map: { region } }) {
   return (
     <MapView
       provider={MapView.PROVIDER_GOOGLE}
       style={{ flex: 1, flexGrow: 1 }}
       showsUserLocation={true}
       region={region}
-      onRegionChange={onRegionChange}
+      onRegionChange={setRegion}
     >
       {doctors.map(doctor => <MapDoctorPin key={doctor.id} doctor={doctor} />)}
     </MapView>
   )
-
-  function onRegionChange(region) {
-    if (mapReady) {
-      setRegion(region)
-    }
-  }
 }
