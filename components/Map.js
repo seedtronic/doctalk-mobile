@@ -65,7 +65,7 @@ function Map({ doctors, setRegion, map: { region } }) {
       style={{ flex: 1, flexGrow: 1 }}
       showsUserLocation={true}
       region={region}
-      onRegionChange={setRegion}
+      onRegionChangeComplete={setRegion}
     >
       {doctors.map(doctor => <MapDoctorPin key={doctor.id} doctor={doctor} />)}
     </MapView>
