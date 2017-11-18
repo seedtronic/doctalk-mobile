@@ -2,13 +2,13 @@ import React from "react"
 import { connect } from "react-redux"
 import { withNavigation } from "react-navigation"
 import { compose, withProps } from "recompose"
-import { setSpecialtyId } from "../lib/reducers/mapFilter"
+import { setFilterSpecialtyId } from "../lib/reducers/map"
 import { ListItem, Text } from "native-base"
 
 export default compose(
   withNavigation,
-  connect(({ mapFilter: { specialtyId } }) => ({ specialtyId }), {
-    setSpecialtyId
+  connect(({ map: { filter: { specialtyId } } }) => ({ specialtyId }), {
+    setFilterSpecialtyId
   }),
   withProps(({ specialty, specialtyId }) => ({
     isSelected: specialty.id === specialtyId
@@ -18,7 +18,7 @@ export default compose(
 function SpecialtiesListItem({
   specialty,
   isSelected,
-  setSpecialtyId,
+  setFilterSpecialtyId,
   navigation
 }) {
   return (
@@ -29,7 +29,7 @@ function SpecialtiesListItem({
     </ListItem>
   )
   function onPress() {
-    setSpecialtyId(specialty.id)
+    setFilterSpecialtyId(specialty.id)
     setTimeout(() => navigation.goBack(null), 400)
   }
   function style() {

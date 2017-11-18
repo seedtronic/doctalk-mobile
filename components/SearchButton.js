@@ -7,7 +7,7 @@ import { MaterialIcons } from "@expo/vector-icons"
 import Spinner from "./Spinner"
 
 export default compose(
-  connect(({ mapFilter: { loading } }) => ({ loading })),
+  connect(({ map: { loading } }) => ({ loading })),
   branch(({ loading }) => loading, renderComponent(LoadingButton)),
   withNavigation
 )(SearchButton)

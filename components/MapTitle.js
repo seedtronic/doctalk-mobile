@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { Title } from "native-base"
 
 export default compose(
-  connect(({ mapFilter: { loading } }) => ({ loading })),
+  connect(({ map: { loading } }) => ({ loading })),
   branch(({ loading }) => loading, renderComponent(LoadingMessage))
 )(MapTitle)
 
