@@ -52,10 +52,6 @@ export default compose(
   }),
   connect(null, { setLoading }),
   withState("mapReady", "setMapReady", false),
-  withHandlers({
-    setRegion: ({ mapReady, setRegion }) => region =>
-      mapReady && setRegion(region)
-  }),
   lifecycle({
     componentWillMount() {
       setTimeout(() => this.setState({ mapReady: true }), 100)
@@ -65,6 +61,10 @@ export default compose(
         nextProps.setLoading(nextProps.data.loading)
       }
     }
+  }),
+  withHandlers({
+    setRegion: ({ mapReady, setRegion }) => region =>
+      mapReady && setRegion(region)
   })
 )(Map)
 
