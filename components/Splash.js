@@ -1,7 +1,18 @@
 import React from "react"
+import { connect } from "react-redux"
+import Expo from "expo"
 import styled from "styled-components/native"
+import { compose, lifecycle, withProps } from "recompose"
 import { Button, Text } from "native-base"
 import withNavigate from "../lib/withNavigate"
+import {
+  reset,
+  setCoords,
+  setPermissionGranted,
+  setPermissionDenied,
+  setPermissionGot
+} from "../lib/reducers/currentPosition"
+import Spinner from "./Spinner"
 
 const Container = styled.View`
   background-color: #62b1f6;
@@ -16,19 +27,73 @@ const Title = styled.Text`
   font-weight: 600;
 `
 
-export default withNavigate(Splash)
+export default compose(
+  connect(null, {
+    reset,
+    setCoords,
+    setPermissionGot,
+    setPermissionDenied,
+    setPermissionGranted
+  }),
+  lifecycle({
+    async componentWillMount() {
+      this.props.reset()
 
-function Splash({ navigate }) {
+      const { status } = await Expo.Permissions.getAsync(
+        Expo.Permissions.LOCATION
+      )
+      const granted = status === "granted"
+      const denied = status === "denied"
+      this.props.setPermissionGranted(granted)
+      this.props.setPermissionDenied(denied)
+      this.props.setPermissionGot(true)
+
+      if (granted) {
+        const {
+          coords: { latitude, longitude }
+        } = await Expo.Location.getCurrentPositionAsync()
+        this.props.setCoords({ latitude, longitude })
+      }
+    }
+  }),
+  connect(
+    ({ currentPosition: { coords, permissionGot, permissionGranted } }) => ({
+      coords,
+      permissionGot,
+      permissionGranted
+    })
+  ),
+  withProps(({ coords, permissionGot, permissionGranted }) => ({
+    loading: permissionGot ? (permissionGranted ? !coords : false) : true
+  })),
+  withNavigate
+)(Splash)
+
+function Splash({ navigate, loading, permissionGranted }) {
   return (
     <Container>
       <Container>
         <Title>Doctalk</Title>
       </Container>
-      <Container>
-        <Button large onPress={navigate("MainNavigator")}>
-          <Text>Iniciar</Text>
-        </Button>
-      </Container>
+      <Container>{renderStartButton()}</Container>
     </Container>
   )
+
+  function renderStartButton() {
+    if (loading) {
+      return <Spinner key="1" />
+    } else if (permissionGranted) {
+      return (
+        <Button key="1" large onPress={navigate("MainNavigator")}>
+          <Text>Iniciar</Text>
+        </Button>
+      )
+    } else {
+      return (
+        <Button key="1" large onPress={navigate("ShareLocationScreen")}>
+          <Text>Iniciar</Text>
+        </Button>
+      )
+    }
+  }
 }

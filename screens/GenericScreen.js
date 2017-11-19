@@ -14,12 +14,12 @@ export default function({
   children
 }) {
   return [
-    <Header>
+    <Header key="1">
       <Left>{LeftButton && <LeftButton />}</Left>
       <Body style={{ flex: 4 }}>{renderTitle()}</Body>
       <Right>{RightButton && <RightButton />}</Right>
     </Header>,
-    <Content>{children}</Content>
+    <Content key="2">{children}</Content>
   ]
 
   function renderTitle() {

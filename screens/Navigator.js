@@ -9,6 +9,7 @@ import DoctorsScreen from "./DoctorsScreen"
 import SearchScreen from "./SearchScreen"
 import ClinicsScreen from "./ClinicsScreen"
 import DoctorScreen from "./DoctorScreen"
+import ShareLocationScreen from "./ShareLocationScreen"
 import SplashScreen from "./SplashScreen"
 import UserScreen from "./UserScreen"
 import TabBar from "../components/TabBar"
@@ -55,9 +56,17 @@ const MainNavigator = StackNavigator(
   { headerMode: "none" }
 )
 
-const StageNavigator = TabNavigator(
+const WizardNavigator = StackNavigator(
   {
     SplashScreen: { screen: SplashScreen },
+    ShareLocationScreen: { screen: ShareLocationScreen }
+  },
+  { headerMode: "none" }
+)
+
+const StageNavigator = TabNavigator(
+  {
+    WizardNavigator: { screen: WizardNavigator },
     MainNavigator: { screen: MainNavigator }
   },
   {
