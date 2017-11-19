@@ -1,16 +1,29 @@
 import { connect } from "react-redux"
 import { compose, mapProps } from "recompose"
-import { addNavigationHelpers, StackNavigator } from "react-navigation"
+import {
+  addNavigationHelpers,
+  StackNavigator,
+  TabNavigator
+} from "react-navigation"
 import MapScreen from "./MapScreen"
 import SearchScreen from "./SearchScreen"
 import DoctorScreen from "./DoctorScreen"
 
-const MainNavigator = StackNavigator(
+const DoctorsNavigator = StackNavigator(
   {
     MapScreen: { screen: MapScreen },
     DoctorScreen: { screen: DoctorScreen }
   },
-  { headerMode: "none" }
+  {
+    headerMode: "none"
+  }
+)
+
+const MainNavigator = TabNavigator(
+  {
+    DoctorsScreen: { screen: DoctorsNavigator }
+  },
+  { initialRouteName: "DoctorsScreen" }
 )
 
 const SearchScreenNavigator = StackNavigator(
@@ -20,7 +33,7 @@ const SearchScreenNavigator = StackNavigator(
   { headerMode: "none" }
 )
 
-export const ModalStack = StackNavigator(
+export const RootNavigator = StackNavigator(
   {
     MainNavigator: { screen: MainNavigator },
     SearchScreenNavigator: { screen: SearchScreenNavigator }
@@ -33,4 +46,4 @@ export default compose(
   mapProps(({ dispatch, state }) => ({
     navigation: addNavigationHelpers({ dispatch, state })
   }))
-)(ModalStack)
+)(RootNavigator)
