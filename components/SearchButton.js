@@ -2,14 +2,14 @@ import React from "react"
 import { connect } from "react-redux"
 import { Button } from "native-base"
 import { branch, compose, renderComponent } from "recompose"
-import { withNavigation } from "react-navigation"
 import { MaterialIcons } from "@expo/vector-icons"
 import Spinner from "./Spinner"
+import withNavigate from "../lib/withNavigate"
 
 export default compose(
   connect(({ map: { loading } }) => ({ loading })),
   branch(({ loading }) => loading, renderComponent(LoadingButton)),
-  withNavigation
+  withNavigate
 )(SearchButton)
 
 function LoadingButton() {
@@ -20,14 +20,10 @@ function LoadingButton() {
   )
 }
 
-function SearchButton({ navigation }) {
+function SearchButton({ navigate }) {
   return (
-    <Button onPress={onPress} transparent>
+    <Button onPress={navigate("SearchScreen")} transparent>
       <MaterialIcons name="search" size={26} color="#2874F0" />
     </Button>
   )
-
-  function onPress() {
-    navigation.navigate("SearchScreen")
-  }
 }

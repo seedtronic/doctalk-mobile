@@ -1,18 +1,14 @@
 import React from "react"
-import { withNavigation } from "react-navigation"
 import { Button } from "native-base"
 import { MaterialIcons } from "@expo/vector-icons"
+import withNavigate from "../lib/withNavigate"
 
-export default withNavigation(BackButton)
+export default withNavigate(BackButton)
 
-function BackButton({ navigation }) {
+function BackButton({ goBack }) {
   return (
-    <Button onPress={onPress} transparent>
+    <Button onPress={goBack} transparent>
       <MaterialIcons name="chevron-left" size={28} color="#2874F0" />
     </Button>
   )
-
-  function onPress() {
-    navigation.goBack(null)
-  }
 }

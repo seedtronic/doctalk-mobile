@@ -1,11 +1,8 @@
 import React from "react"
 import { Footer, FooterTab } from "native-base"
 import TabButton from "./TabButton"
-import { withNavigation } from "react-navigation"
 
-export default withNavigation(TabBar)
-
-function TabBar({ navigation }) {
+export default function TabBar() {
   return (
     <Footer>
       <FooterTab>

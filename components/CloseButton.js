@@ -1,18 +1,14 @@
 import React from "react"
-import { withNavigation } from "react-navigation"
 import { Button } from "native-base"
 import { MaterialIcons } from "@expo/vector-icons"
+import withNavigate from "../lib/withNavigate"
 
-export default withNavigation(CloseButton)
+export default withNavigate(CloseButton)
 
-function CloseButton({ navigation }) {
+function CloseButton({ goBack }) {
   return (
-    <Button onPress={onPress} transparent>
+    <Button onPress={goBack} transparent>
       <MaterialIcons name="close" size={26} color="#2874F0" />
     </Button>
   )
-
-  function onPress() {
-    navigation.goBack(null)
-  }
 }
