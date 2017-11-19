@@ -56,7 +56,7 @@ const SearchScreenNavigator = StackNavigator(
 export const RootNavigator = StackNavigator(
   {
     MainNavigator: { screen: MainNavigator },
-    SearchScreenNavigator: { screen: SearchScreenNavigator }
+    SearchScreen: { screen: SearchScreen }
   },
   { headerMode: "none", mode: "modal" }
 )

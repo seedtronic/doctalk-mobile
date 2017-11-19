@@ -28,6 +28,6 @@ function SearchButton({ navigation }) {
   )
 
   function onPress() {
-    navigation.navigate("SearchScreenNavigator")
+    navigation.navigate("SearchScreen")
   }
 }
