@@ -58,7 +58,7 @@ export default compose(
     },
     componentWillReceiveProps(nextProps) {
       if (this.props.loading !== nextProps.loading) {
-        nextProps.setLoading(nextProps.data.loading)
+        nextProps.setLoading(nextProps.loading)
       }
     }
   }),

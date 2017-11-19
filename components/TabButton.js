@@ -1,15 +1,17 @@
 import React from "react"
+import { compose } from "recompose"
 import { Button, Text } from "native-base"
-import { withNavigation } from "react-navigation"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
+import withNavigate from "../lib/withNavigate"
+import withCurrentRoute from "../lib/withCurrentRoute"
+import includes from "lodash/includes"
 
-export default withNavigation(TabButton)
+export default compose(withNavigate, withCurrentRoute)(TabButton)
 
-function TabButton({ routeName, iconName, label, navigation }) {
-  const currentRoute = navigation.state.routes[navigation.state.index].key
-  const isCurrentRoute = routeName === currentRoute
+function TabButton({ routeName, iconName, label, navigate, currentRoutePath }) {
+  const isCurrentRoute = includes(currentRoutePath, routeName)
   return (
-    <Button onPress={onPress} active={isCurrentRoute} vertical>
+    <Button onPress={navigate(routeName)} active={isCurrentRoute} vertical>
       <MaterialCommunityIcons
         name={iconName}
         size={22}
@@ -18,8 +20,4 @@ function TabButton({ routeName, iconName, label, navigation }) {
       <Text>{label}</Text>
     </Button>
   )
-
-  function onPress() {
-    navigation.navigate(routeName)
-  }
 }
