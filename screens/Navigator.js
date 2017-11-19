@@ -13,8 +13,7 @@ import TabBar from "../components/TabBar"
 
 const DoctorsNavigator = StackNavigator(
   {
-    DoctorsMapScreen: { screen: DoctorsScreen },
-    DoctorScreen: { screen: DoctorScreen }
+    DoctorsMapScreen: { screen: DoctorsScreen }
   },
   { headerMode: "none" }
 )
@@ -33,7 +32,7 @@ const UserNavigator = StackNavigator(
   { headerMode: "none" }
 )
 
-const MainNavigator = TabNavigator(
+const SectionsNavigator = TabNavigator(
   {
     DoctorsNavigator: { screen: DoctorsNavigator },
     ClinicsNavigator: { screen: ClinicsNavigator },
@@ -46,9 +45,10 @@ const MainNavigator = TabNavigator(
   }
 )
 
-const SearchScreenNavigator = StackNavigator(
+const MainNavigator = StackNavigator(
   {
-    SearchScreen: { screen: SearchScreen }
+    SectionsNavigator: { screen: SectionsNavigator },
+    DoctorScreen: { screen: DoctorScreen }
   },
   { headerMode: "none" }
 )
