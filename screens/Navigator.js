@@ -44,6 +44,7 @@ const SectionsNavigator = TabNavigator(
   {
     animationEnabled: true,
     initialRouteName: "DoctorsNavigator",
+    lazy: true,
     tabBarComponent: TabBar
   }
 )
@@ -71,6 +72,7 @@ const StageNavigator = TabNavigator(
   },
   {
     animationEnabled: true,
+    lazy: true,
     navigationOptions: {
       tabBarVisible: false
     }
