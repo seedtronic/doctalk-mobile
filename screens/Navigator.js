@@ -5,7 +5,7 @@ import {
   StackNavigator,
   TabNavigator
 } from "react-navigation"
-import MapScreen from "./MapScreen"
+import DoctorsScreen from "./DoctorsScreen"
 import SearchScreen from "./SearchScreen"
 import DoctorScreen from "./DoctorScreen"
 import UserScreen from "./UserScreen"
@@ -13,7 +13,7 @@ import TabBar from "../components/TabBar"
 
 const DoctorsNavigator = StackNavigator(
   {
-    DoctorsMapScreen: { screen: MapScreen },
+    DoctorsMapScreen: { screen: DoctorsScreen },
     DoctorScreen: { screen: DoctorScreen }
   },
   { headerMode: "none" }
@@ -21,7 +21,7 @@ const DoctorsNavigator = StackNavigator(
 
 const ClinicsNavigator = StackNavigator(
   {
-    ClinicsMapScreen: { screen: MapScreen }
+    ClinicsMapScreen: { screen: DoctorsScreen }
   },
   { headerMode: "none" }
 )
