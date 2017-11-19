@@ -9,6 +9,7 @@ import DoctorsScreen from "./DoctorsScreen"
 import SearchScreen from "./SearchScreen"
 import ClinicsScreen from "./ClinicsScreen"
 import DoctorScreen from "./DoctorScreen"
+import SplashScreen from "./SplashScreen"
 import UserScreen from "./UserScreen"
 import TabBar from "../components/TabBar"
 
@@ -54,9 +55,22 @@ const MainNavigator = StackNavigator(
   { headerMode: "none" }
 )
 
+const StageNavigator = TabNavigator(
+  {
+    SplashScreen: { screen: SplashScreen },
+    MainNavigator: { screen: MainNavigator }
+  },
+  {
+    animationEnabled: true,
+    navigationOptions: {
+      tabBarVisible: false
+    }
+  }
+)
+
 export const RootNavigator = StackNavigator(
   {
-    MainNavigator: { screen: MainNavigator },
+    StageNavigator: { screen: StageNavigator },
     SearchScreen: { screen: SearchScreen }
   },
   { headerMode: "none", mode: "modal" }
