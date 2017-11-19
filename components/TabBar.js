@@ -9,9 +9,21 @@ function TabBar({ navigation }) {
   return (
     <Footer>
       <FooterTab>
-        <TabButton label="Consulta" routeName="DoctorsNavigator" />
-        <TabButton label="Exame" routeName="ClinicsNavigator" />
-        <TabButton label="Meus dados" routeName="UserNavigator" />
+        <TabButton
+          label="Consulta"
+          iconName="stethoscope"
+          routeName="DoctorsNavigator"
+        />
+        <TabButton
+          label="Exame"
+          iconName="hospital-building"
+          routeName="ClinicsNavigator"
+        />
+        <TabButton
+          label="Usuário"
+          iconName="account-circle"
+          routeName="UserNavigator"
+        />
       </FooterTab>
     </Footer>
   )
