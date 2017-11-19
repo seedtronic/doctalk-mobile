@@ -8,23 +8,42 @@ import {
 import MapScreen from "./MapScreen"
 import SearchScreen from "./SearchScreen"
 import DoctorScreen from "./DoctorScreen"
+import UserScreen from "./UserScreen"
 import TabBar from "../components/TabBar"
 
 const DoctorsNavigator = StackNavigator(
   {
-    MapScreen: { screen: MapScreen },
+    DoctorsMapScreen: { screen: MapScreen },
     DoctorScreen: { screen: DoctorScreen }
   },
+  { headerMode: "none" }
+)
+
+const ClinicsNavigator = StackNavigator(
   {
-    headerMode: "none"
-  }
+    ClinicsMapScreen: { screen: MapScreen }
+  },
+  { headerMode: "none" }
+)
+
+const UserNavigator = StackNavigator(
+  {
+    UserScreen: { screen: UserScreen }
+  },
+  { headerMode: "none" }
 )
 
 const MainNavigator = TabNavigator(
   {
-    DoctorsScreen: { screen: DoctorsNavigator }
+    DoctorsNavigator: { screen: DoctorsNavigator },
+    ClinicsNavigator: { screen: ClinicsNavigator },
+    UserNavigator: { screen: UserNavigator }
   },
-  { initialRouteName: "DoctorsScreen", tabBarComponent: TabBar }
+  {
+    animationEnabled: true,
+    initialRouteName: "DoctorsNavigator",
+    tabBarComponent: TabBar
+  }
 )
 
 const SearchScreenNavigator = StackNavigator(

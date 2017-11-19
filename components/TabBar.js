@@ -1,19 +1,17 @@
 import React from "react"
-import { Button, Footer, FooterTab, Text } from "native-base"
+import { Footer, FooterTab } from "native-base"
+import TabButton from "./TabButton"
+import { withNavigation } from "react-navigation"
 
-export default function TabBar() {
+export default withNavigation(TabBar)
+
+function TabBar({ navigation }) {
   return (
     <Footer>
       <FooterTab>
-        <Button active>
-          <Text>Consulta</Text>
-        </Button>
-        <Button>
-          <Text>Exame</Text>
-        </Button>
-        <Button>
-          <Text>Meus dados</Text>
-        </Button>
+        <TabButton label="Consulta" routeName="DoctorsNavigator" />
+        <TabButton label="Exame" routeName="ClinicsNavigator" />
+        <TabButton label="Meus dados" routeName="UserNavigator" />
       </FooterTab>
     </Footer>
   )
