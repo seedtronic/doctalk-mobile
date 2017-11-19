@@ -54,7 +54,7 @@ export default compose(
   withState("mapReady", "setMapReady", false),
   lifecycle({
     componentWillMount() {
-      setTimeout(() => this.setState({ mapReady: true }), 100)
+      setTimeout(() => this.setState({ mapReady: true }), 150)
     },
     componentWillReceiveProps(nextProps) {
       if (this.props.loading !== nextProps.loading) {
