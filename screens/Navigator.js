@@ -8,6 +8,7 @@ import {
 import MapScreen from "./MapScreen"
 import SearchScreen from "./SearchScreen"
 import DoctorScreen from "./DoctorScreen"
+import TabBar from "../components/TabBar"
 
 const DoctorsNavigator = StackNavigator(
   {
@@ -23,7 +24,7 @@ const MainNavigator = TabNavigator(
   {
     DoctorsScreen: { screen: DoctorsNavigator }
   },
-  { initialRouteName: "DoctorsScreen" }
+  { initialRouteName: "DoctorsScreen", tabBarComponent: TabBar }
 )
 
 const SearchScreenNavigator = StackNavigator(
