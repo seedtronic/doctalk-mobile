@@ -21,6 +21,11 @@ const Question = styled.Text`
 const ButtonsContainer = styled.View`
   align-items: center;
 `
+const AppointmentTypeButton = styled(Button)`
+  justify-content: center;
+  margin-bottom: 20;
+  width: 150;
+`
 
 export default compose(withNavigate)(AppointmentType)
 
@@ -31,20 +36,12 @@ function AppointmentType({ navigate }) {
         <Question>O que você deseja marcar?</Question>
       </View>
       <ButtonsContainer>
-        <View>
-          <Button
-            large
-            onPress={navigate("MainNavigator")}
-            style={{ marginBottom: 20 }}
-          >
-            <Text>Consulta</Text>
-          </Button>
-        </View>
-        <View>
-          <Button large onPress={navigate("ClinicsNavigator")}>
-            <Text>Exame</Text>
-          </Button>
-        </View>
+        <AppointmentTypeButton large onPress={navigate("MainNavigator")}>
+          <Text>Consulta</Text>
+        </AppointmentTypeButton>
+        <AppointmentTypeButton large onPress={navigate("ClinicsNavigator")}>
+          <Text>Exame</Text>
+        </AppointmentTypeButton>
       </ButtonsContainer>
     </Container>
   )
