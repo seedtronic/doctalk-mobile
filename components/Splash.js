@@ -37,23 +37,7 @@ export default compose(
   }),
   lifecycle({
     async componentWillMount() {
-      this.props.reset()
-
-      const { status } = await Expo.Permissions.getAsync(
-        Expo.Permissions.LOCATION
-      )
-      const granted = status === "granted"
-      const denied = status === "denied"
-      this.props.setPermissionGranted(granted)
-      this.props.setPermissionDenied(denied)
-      this.props.setPermissionGot(true)
-
-      if (granted) {
-        const {
-          coords: { latitude, longitude }
-        } = await Expo.Location.getCurrentPositionAsync()
-        this.props.setCoords({ latitude, longitude })
-      }
+      checkCurrentLocation(this.props)
     }
   }),
   connect(
@@ -95,5 +79,23 @@ function Splash({ navigate, loading, permissionGranted }) {
         </Button>
       )
     }
+  }
+}
+
+async function checkCurrentLocation(props) {
+  props.reset()
+
+  const { status } = await Expo.Permissions.getAsync(Expo.Permissions.LOCATION)
+  const granted = status === "granted"
+  const denied = status === "denied"
+  props.setPermissionGranted(granted)
+  props.setPermissionDenied(denied)
+  props.setPermissionGot(true)
+
+  if (granted) {
+    const {
+      coords: { latitude, longitude }
+    } = await Expo.Location.getCurrentPositionAsync()
+    props.setCoords({ latitude, longitude })
   }
 }
