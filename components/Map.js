@@ -1,46 +1,35 @@
 import React from "react"
 import { connect } from "react-redux"
 import { graphql } from "react-apollo"
-import { MapView } from "expo"
+import Expo, { MapView } from "expo"
 import {
   branch,
   compose,
   lifecycle,
   renderComponent,
-  withHandlers,
   withProps,
   withState
 } from "recompose"
 import MapDoctorPin from "./MapDoctorPin"
 import SpinnerView from "./SpinnerView"
 import doctorsQuery from "../graphql/doctorsQuery"
-import { setRegion, updateFilterRegion, setLoading } from "../lib/reducers/map"
+import { setRegion, setLoading } from "../lib/reducers/map"
 
 export default compose(
-  connect(({ map }) => ({ map }), { setRegion, updateFilterRegion }),
-  withProps(({ setRegion, updateFilterRegion }) => ({
-    setRegion: region => {
-      setRegion(region)
-      updateFilterRegion()
-    }
-  })),
+  connect(({ map }) => ({ map }), { setRegion }),
   lifecycle({
     componentWillMount() {
       if (!this.props.map.region) {
-        navigator.geolocation.getCurrentPosition(
-          ({ coords: { latitude, longitude } }) =>
-            this.props.setRegion({ latitude, longitude })
-        )
+        loadCurrentLocation(this.props)
       }
     }
   }),
   branch(({ map }) => !map.region, renderComponent(SpinnerView)),
-  branch(({ map }) => !map.filter.region, renderComponent(SpinnerView)),
   graphql(doctorsQuery, {
-    options: ({ map: { filter } }) => {
+    options: ({ map: { region, filter } }) => {
       return {
         fetchPolicy: "cache-and-network",
-        variables: filter
+        variables: { region, ...filter }
       }
     }
   }),
@@ -51,33 +40,33 @@ export default compose(
     }
   }),
   connect(null, { setLoading }),
-  withState("mapReady", "setMapReady", false),
   lifecycle({
-    componentWillMount() {
-      setTimeout(() => this.setState({ mapReady: true }), 150)
-    },
     componentWillReceiveProps(nextProps) {
       if (this.props.loading !== nextProps.loading) {
         nextProps.setLoading(nextProps.loading)
       }
     }
   }),
-  withHandlers({
-    setRegion: ({ mapReady, setRegion }) => region =>
-      mapReady && setRegion(region)
-  })
+  withState("localRegion", "setLocalRegion", ({ map: { region } }) => region)
 )(Map)
 
-function Map({ doctors, setRegion, map: { region } }) {
+function Map({ doctors, localRegion, setLocalRegion, setRegion }) {
   return (
     <MapView
       provider={MapView.PROVIDER_GOOGLE}
       style={{ flex: 1, flexGrow: 1 }}
       showsUserLocation={true}
-      region={region}
-      onRegionChange={setRegion}
+      region={localRegion}
+      onRegionChange={setLocalRegion}
+      onRegionChangeComplete={setRegion}
     >
       {doctors.map(doctor => <MapDoctorPin key={doctor.id} doctor={doctor} />)}
     </MapView>
   )
+}
+
+async function loadCurrentLocation(props) {
+  const result = await Expo.Location.getCurrentPositionAsync()
+  const { latitude, longitude } = result.coords
+  props.setRegion({ latitude, longitude })
 }

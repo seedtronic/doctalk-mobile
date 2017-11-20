@@ -13,6 +13,7 @@ import {
   setPermissionDenied,
   setPermissionGot
 } from "../lib/reducers/currentPosition"
+import { setRegion } from "../lib/reducers/map"
 import Spinner from "./Spinner"
 import withIsCurrentRoute from "../lib/withIsCurrentRoute"
 
@@ -35,7 +36,8 @@ export default compose(
     setCoords,
     setPermissionGot,
     setPermissionDenied,
-    setPermissionGranted
+    setPermissionGranted,
+    setRegion
   }),
   withProps({ routeName: "SplashScreen" }),
   withIsCurrentRoute,
@@ -112,5 +114,6 @@ async function checkCurrentLocation(props) {
       coords: { latitude, longitude }
     } = await Expo.Location.getCurrentPositionAsync()
     props.setCoords({ latitude, longitude })
+    props.setRegion({ latitude, longitude })
   }
 }
