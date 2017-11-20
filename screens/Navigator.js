@@ -5,6 +5,7 @@ import {
   StackNavigator,
   TabNavigator
 } from "react-navigation"
+import AppointmentTypeScreen from "./AppointmentTypeScreen"
 import DoctorsScreen from "./DoctorsScreen"
 import SearchScreen from "./SearchScreen"
 import ClinicsScreen from "./ClinicsScreen"
@@ -60,7 +61,8 @@ const MainNavigator = StackNavigator(
 const WizardNavigator = StackNavigator(
   {
     SplashScreen: { screen: SplashScreen },
-    ShareLocationScreen: { screen: ShareLocationScreen }
+    ShareLocationScreen: { screen: ShareLocationScreen },
+    AppointmentTypeScreen: { screen: AppointmentTypeScreen }
   },
   { headerMode: "none" }
 )

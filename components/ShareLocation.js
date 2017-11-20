@@ -6,6 +6,10 @@ import { compose, lifecycle } from "recompose"
 import styled from "styled-components/native"
 import { Button, Text } from "native-base"
 import withNavigate from "../lib/withNavigate"
+import {
+  setPermissionDenied,
+  setPermissionGranted
+} from "../lib/reducers/currentPosition"
 
 const Container = styled.View`
   background-color: #62b1f6;
@@ -43,12 +47,20 @@ export default compose(
   lifecycle({
     componentWillMount() {}
   }),
-  connect(({ currentPosition: { permissionDenied } }) => ({
-    permissionDenied
-  }))
+  connect(
+    ({ currentPosition: { permissionDenied } }) => ({
+      permissionDenied
+    }),
+    { setPermissionDenied, setPermissionGranted }
+  )
 )(ShareLocation)
 
-function ShareLocation({ navigate, permissionDenied }) {
+function ShareLocation({
+  navigate,
+  permissionDenied,
+  setPermissionDenied,
+  setPermissionGranted
+}) {
   return (
     <Container>
       <View>
@@ -62,7 +74,7 @@ function ShareLocation({ navigate, permissionDenied }) {
     if (permissionDenied) {
       return [
         <View key="1">
-          <Button large disabled>
+          <Button block large disabled>
             <Text>Compartilhar localização</Text>
           </Button>
         </View>,
@@ -75,7 +87,7 @@ function ShareLocation({ navigate, permissionDenied }) {
       ]
     } else {
       return (
-        <Button large onPress={onPress}>
+        <Button block large onPress={onPress}>
           <Text>Compartilhar localização</Text>
         </Button>
       )
@@ -86,9 +98,12 @@ function ShareLocation({ navigate, permissionDenied }) {
     const { status } = await Expo.Permissions.askAsync(
       Expo.Permissions.LOCATION
     )
+    const denied = status === "denied"
     const granted = status === "granted"
+    setPermissionDenied(denied)
+    setPermissionGranted(granted)
     if (granted) {
-      navigate("MainNavigator")()
+      navigate("AppointmentTypeScreen")()
     }
   }
 }

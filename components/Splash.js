@@ -1,4 +1,5 @@
 import React from "react"
+import { View } from "react-native"
 import { connect } from "react-redux"
 import Expo from "expo"
 import styled from "styled-components/native"
@@ -56,10 +57,10 @@ export default compose(
 function Splash({ navigate, loading, permissionGranted }) {
   return (
     <Container>
-      <Container>
+      <View>
         <Title>Doctalk</Title>
-      </Container>
-      <Container>{renderStartButton()}</Container>
+      </View>
+      <View>{renderStartButton()}</View>
     </Container>
   )
 
@@ -68,14 +69,14 @@ function Splash({ navigate, loading, permissionGranted }) {
       return <Spinner key="1" />
     } else if (permissionGranted) {
       return (
-        <Button key="1" large onPress={navigate("MainNavigator")}>
-          <Text>Iniciar</Text>
+        <Button key="1" large onPress={navigate("AppointmentTypeScreen")}>
+          <Text>Iniciar assistente</Text>
         </Button>
       )
     } else {
       return (
         <Button key="1" large onPress={navigate("ShareLocationScreen")}>
-          <Text>Iniciar</Text>
+          <Text>Iniciar assistente</Text>
         </Button>
       )
     }
