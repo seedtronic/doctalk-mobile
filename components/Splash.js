@@ -14,6 +14,7 @@ import {
   setPermissionGot
 } from "../lib/reducers/currentPosition"
 import Spinner from "./Spinner"
+import withIsCurrentRoute from "../lib/withIsCurrentRoute"
 
 const Container = styled.View`
   background-color: #62b1f6;
@@ -36,9 +37,16 @@ export default compose(
     setPermissionDenied,
     setPermissionGranted
   }),
+  withProps({ routeName: "SplashScreen" }),
+  withIsCurrentRoute,
   lifecycle({
-    async componentWillMount() {
+    componentWillMount() {
       checkCurrentLocation(this.props)
+    },
+    componentWillReceiveProps(nextProps) {
+      if (!this.props.isCurrentRoute && nextProps.isCurrentRoute) {
+        checkCurrentLocation(nextProps)
+      }
     }
   }),
   connect(
@@ -66,16 +74,22 @@ function Splash({ navigate, loading, permissionGranted }) {
 
   function renderStartButton() {
     if (loading) {
-      return <Spinner key="1" />
+      return (
+        <Button large style={{ width: 190 }}>
+          <View style={{ flexGrow: 1, alignItems: "center" }}>
+            <Spinner color="white" size="large" />
+          </View>
+        </Button>
+      )
     } else if (permissionGranted) {
       return (
-        <Button key="1" large onPress={navigate("AppointmentTypeScreen")}>
+        <Button large onPress={navigate("AppointmentTypeScreen")}>
           <Text>Iniciar assistente</Text>
         </Button>
       )
     } else {
       return (
-        <Button key="1" large onPress={navigate("ShareLocationScreen")}>
+        <Button large onPress={navigate("ShareLocationScreen")}>
           <Text>Iniciar assistente</Text>
         </Button>
       )
