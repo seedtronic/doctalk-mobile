@@ -1,20 +1,22 @@
 import React from "react"
+import { connect } from "react-redux"
 import Expo from "expo"
 import { graphql } from "react-apollo"
 import { compose } from "recompose"
 import { Button, Text } from "native-base"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import loginWithGoogleMutation from "../graphql/loginWithGoogleMutation"
+import { setUser } from "../lib/reducers/session"
 
 export default compose(
+  connect(null, { setUser }),
   graphql(loginWithGoogleMutation, {
-    props({ mutate }) {
-      return {
-        loginWithGoogle: function(variables) {
-          return mutate({ variables })
-        }
-      }
-    }
+    props: ({ mutate, ownProps: { setUser } }) => ({
+      loginWithGoogle: variables =>
+        mutate({ variables }).then(response =>
+          setUser(response.data.loginWithGoogle)
+        )
+    })
   })
 )(GoogleButton)
 
@@ -38,8 +40,8 @@ function GoogleButton({ loginWithGoogle }) {
     })
     if (result.type === "success") {
       loginWithGoogle({
-        userId: result.user.id,
-        serverAuthCode: result.serverAuthCode
+        idToken: result.idToken,
+        photoUrl: result.user.photoUrl
       })
     }
   }
