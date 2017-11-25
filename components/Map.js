@@ -55,10 +55,11 @@ function Map({ doctors, localRegion, setLocalRegion, setRegion }) {
     <MapView
       provider={MapView.PROVIDER_GOOGLE}
       style={{ flex: 1, flexGrow: 1 }}
-      showsUserLocation={true}
       region={localRegion}
       onRegionChange={setLocalRegion}
       onRegionChangeComplete={setRegion}
+      showsUserLocation
+      showsMyLocationButton
     >
       {doctors.map(doctor => <MapDoctorPin key={doctor.id} doctor={doctor} />)}
     </MapView>
