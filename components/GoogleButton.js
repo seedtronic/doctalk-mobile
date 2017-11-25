@@ -1,12 +1,11 @@
-import React from "react"
 import { connect } from "react-redux"
 import Expo from "expo"
 import { graphql } from "react-apollo"
-import { compose } from "recompose"
-import { Button, Text } from "native-base"
-import { MaterialCommunityIcons } from "@expo/vector-icons"
+import { compose, withHandlers, withProps } from "recompose"
 import loginWithGoogleMutation from "../graphql/loginWithGoogleMutation"
 import { setUser } from "../lib/reducers/session"
+import { MaterialCommunityIcons } from "@expo/vector-icons"
+import WideButton from "./WideButton"
 
 export default compose(
   connect(null, { setUser }),
@@ -17,18 +16,19 @@ export default compose(
           setUser(response.data.loginWithGoogle)
         )
     })
+  }),
+  withProps({
+    iconName: "google",
+    IconProvider: MaterialCommunityIcons,
+    label: "Entrar com o Google"
+  }),
+  withHandlers({
+    onPress: ({ loginWithGoogle }) => () => onPress(loginWithGoogle)
   })
-)(GoogleButton)
+)(WideButton)
 
-function GoogleButton({ loginWithGoogle }) {
-  return (
-    <Button onPress={onPress}>
-      <MaterialCommunityIcons name="google" size={24} />
-      <Text size={24}>Login with Google</Text>
-    </Button>
-  )
-
-  async function onPress() {
+async function onPress(loginWithGoogle) {
+  try {
     const result = await Expo.Google.logInAsync({
       androidClientId:
         "274763169331-n32ea4t1m3kln2asl7gdqv2pu7kaq5ef.apps.googleusercontent.com",
@@ -44,5 +44,7 @@ function GoogleButton({ loginWithGoogle }) {
         photoUrl: result.user.photoUrl
       })
     }
+  } catch (error) {
+    console.log(error)
   }
 }

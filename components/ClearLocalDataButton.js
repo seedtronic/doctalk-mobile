@@ -1,17 +1,15 @@
-import React from "react"
 import { connect } from "react-redux"
-import { View } from "react-native"
-import { Button, Text } from "native-base"
+import { compose, withProps } from "recompose"
 import { resetState } from "../lib/reducers"
+import WideButton from "./WideButton"
+import { MaterialIcons } from "@expo/vector-icons"
 
-export default connect(null, { resetState })(ClearLocalCacheButton)
-
-function ClearLocalCacheButton({ resetState }) {
-  return (
-    <View>
-      <Button onPress={resetState}>
-        <Text>Limpar dados no aparelhos</Text>
-      </Button>
-    </View>
-  )
-}
+export default compose(
+  connect(null, { onPress: resetState }),
+  withProps({
+    iconName: "clear",
+    IconProvider: MaterialIcons,
+    label: "Limpar dados neste aparelho",
+    danger: true
+  })
+)(WideButton)
