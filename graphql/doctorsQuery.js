@@ -9,6 +9,7 @@ export default gql`
           name
           imageUrl
           address {
+            id
             lat
             lng
           }

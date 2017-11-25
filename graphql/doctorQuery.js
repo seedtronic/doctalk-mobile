@@ -5,11 +5,21 @@ export default gql`
     doctor(id: $doctorId) {
       id
       name
-      lat
-      lng
       imageUrl
       specialty {
+        id
         title
+      }
+      address {
+        id
+        street
+        number
+        complement
+        city
+        state
+        zipcode
+        lat
+        lng
       }
     }
   }
