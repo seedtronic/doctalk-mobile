@@ -13,7 +13,10 @@ export default compose(
 function MapDoctorPin({ navigate, pressed, region, doctor }) {
   return (
     <MapView.Marker
-      coordinate={{ latitude: doctor.lat, longitude: doctor.lng }}
+      coordinate={{
+        latitude: doctor.address.lat,
+        longitude: doctor.address.lng
+      }}
       onPress={navigate("DoctorScreen", { doctorId: doctor.id })}
     >
       <DoctorMarker doctor={doctor} pressed={pressed} />
