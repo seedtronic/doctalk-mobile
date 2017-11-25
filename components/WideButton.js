@@ -1,23 +1,36 @@
 import React from "react"
 import { View } from "react-native"
 import { Button, Text } from "native-base"
+import Spinner from "./Spinner"
 
 export default function WideButton({
   iconName,
   IconProvider,
   label,
+  loading,
   ...props
 }) {
+  const color = props.light ? "black" : "white"
   return (
     <View style={{ width: "100%" }}>
-      <Button style={{ margin: 10 }} iconLeft block {...props}>
-        <IconProvider
-          name={iconName}
-          size={24}
-          color={props.light ? "black" : "white"}
-        />
+      <Button
+        disabled={loading}
+        style={{ margin: 10 }}
+        iconLeft
+        block
+        {...props}
+      >
+        {renderIcon()}
         <Text size={24}>{label}</Text>
       </Button>
     </View>
   )
+
+  function renderIcon() {
+    if (loading) {
+      return <Spinner color={color} />
+    } else {
+      return <IconProvider name={iconName} size={24} color={color} />
+    }
+  }
 }

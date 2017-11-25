@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import Expo from "expo"
 import { graphql } from "react-apollo"
-import { compose, withHandlers, withProps } from "recompose"
+import { compose, withHandlers, withProps, withState } from "recompose"
 import loginWithGoogleMutation from "../graphql/loginWithGoogleMutation"
 import { setUser } from "../lib/reducers/session"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
@@ -17,17 +17,20 @@ export default compose(
         )
     })
   }),
-  withProps({
+  withState("loading", "setLoading", false),
+  withProps(({ loading }) => ({
     iconName: "google",
     IconProvider: MaterialCommunityIcons,
-    label: "Entrar com o Google"
-  }),
+    label: "Entrar com o Google",
+    loading
+  })),
   withHandlers({
-    onPress: ({ loginWithGoogle }) => () => onPress(loginWithGoogle)
+    onPress: props => () => onPress(props)
   })
 )(WideButton)
 
-async function onPress(loginWithGoogle) {
+async function onPress({ loginWithGoogle, setLoading }) {
+  setLoading(true)
   try {
     const result = await Expo.Google.logInAsync({
       androidClientId:
@@ -47,4 +50,5 @@ async function onPress(loginWithGoogle) {
   } catch (error) {
     console.log(error)
   }
+  setLoading(false)
 }
