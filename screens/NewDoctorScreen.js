@@ -1,11 +1,14 @@
 import React from "react"
 import GenericScreen from "./GenericScreen"
-import GoBackButton from "../components/GoBackButton"
+import BackButtonWithHandler from "../components/BackButtonWithHandler"
 import NewDoctor from "../components/NewDoctor"
 
 export default function NewDoctorScreen() {
   return (
-    <GenericScreen title="Cadastro do médico" LeftButton={GoBackButton}>
+    <GenericScreen
+      title="Cadastro do médico"
+      LeftButton={BackButtonWithHandler}
+    >
       <NewDoctor />
     </GenericScreen>
   )

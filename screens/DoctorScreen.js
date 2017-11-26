@@ -6,7 +6,7 @@ import GenericScreen from "./GenericScreen"
 import DoctorProfile from "../components/DoctorProfile"
 import doctorQuery from "../graphql/doctorQuery"
 import Spinner from "../components/Spinner"
-import GoBackButton from "../components/GoBackButton"
+import BackButtonWithHandler from "../components/BackButtonWithHandler"
 
 export default compose(
   withNavigation,
@@ -20,12 +20,20 @@ export default compose(
 
 function DoctorScreen({ doctor }) {
   return (
-    <GenericScreen LeftButton={GoBackButton} title={doctor.specialty.title}>
+    <GenericScreen
+      LeftButton={BackButtonWithHandler}
+      title={doctor.specialty.title}
+    >
       <DoctorProfile doctor={doctor} />
     </GenericScreen>
   )
 }
 
 function Loading() {
-  return <GenericScreen LeftButton={GoBackButton} TitleComponent={Spinner} />
+  return (
+    <GenericScreen
+      LeftButton={BackButtonWithHandler}
+      TitleComponent={Spinner}
+    />
+  )
 }

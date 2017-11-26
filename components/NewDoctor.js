@@ -75,8 +75,11 @@ function NewDoctor({ specialties }) {
 }
 
 function buildSpecialtiesPickerHeader(goBack) {
-  const GoBackButton = () => <BackButton onPress={goBack} />
+  const BackButtonWithHandler = () => <BackButton onPress={goBack} />
   return (
-    <Header title="Selecione uma especialidade" LeftButton={GoBackButton} />
+    <Header
+      title="Selecione uma especialidade"
+      LeftButton={BackButtonWithHandler}
+    />
   )
 }
