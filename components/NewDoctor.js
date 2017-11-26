@@ -1,85 +1,44 @@
 import React from "react"
+import { compose, withHandlers } from "recompose"
 import styled from "styled-components/native"
-import { Form, H3, Item, Input, Label, Picker } from "native-base"
+import { Form, H3 } from "native-base"
+import { reduxForm } from "redux-form"
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view"
-import withSpecialties from "../lib/withSpecialties"
-import Header from "./Header"
-import CloseButton from "./CloseButton"
+import WideButton from "./WideButton"
+import FormEntry from "./FormEntry"
+import SpecialtyPicker from "./SpecialtyPicker"
 
 const Title = styled(H3)`
   margin-left: 15;
   margin-top: 20;
 `
 
-export default withSpecialties(NewDoctor)
+export default compose(
+  withHandlers({ onSubmit: () => values => console.log(values) }),
+  reduxForm({ form: "NewDoctor" })
+)(NewDoctor)
 
-function NewDoctor({ specialties }) {
+function NewDoctor({ specialties, handleSubmit }) {
   return (
     <KeyboardAwareScrollView>
       <Form>
         <Title>Dados profissionais</Title>
-        <Item inlineLabel>
-          <Label>Nome</Label>
-          <Input />
-        </Item>
-        <Item inlineLabel>
-          <Label>CRM</Label>
-          <Input />
-        </Item>
-        <Item inlineLabel>
-          <Label>Especialidade</Label>
-          <Picker
-            selectedValue={null}
-            onValueChange={() => {}}
-            placeholder="Selecionar"
-            renderHeader={buildSpecialtiesPickerHeader}
-          >
-            {specialties.map(specialty => (
-              <Picker.Item
-                key={specialty.id}
-                label={specialty.title}
-                value={specialty.id}
-              />
-            ))}
-          </Picker>
-        </Item>
-
+        <FormEntry label="Nome" name="name" />
+        <FormEntry label="CRM" name="crm" />
+        <FormEntry
+          label="Especialidade"
+          name="specialtyId"
+          InputComponent={SpecialtyPicker}
+        />
         <Title>Endereço do consultório</Title>
-        <Item inlineLabel>
-          <Label>Nome da rua</Label>
-          <Input />
-        </Item>
-        <Item inlineLabel>
-          <Label>Número</Label>
-          <Input />
-        </Item>
-        <Item inlineLabel>
-          <Label>Complemento</Label>
-          <Input />
-        </Item>
-        <Item inlineLabel>
-          <Label>Cidade</Label>
-          <Input />
-        </Item>
-        <Item inlineLabel>
-          <Label>Estado</Label>
-          <Input />
-        </Item>
-        <Item inlineLabel>
-          <Label>CEP</Label>
-          <Input />
-        </Item>
+        <FormEntry label="Rua" name="street" />
+        <FormEntry label="Número" name="number" />
+        <FormEntry label="Complemento" name="complement" />
+        <FormEntry label="Cidade" name="city" />
+        <FormEntry label="State" name="Estado" />
+        <FormEntry label="CEP" name="zipcode" />
       </Form>
+      <WideButton label="Salvar cadastro" onPress={handleSubmit} />
     </KeyboardAwareScrollView>
-  )
-}
-
-function buildSpecialtiesPickerHeader(goBack) {
-  const CloseButtonWithHandler = () => <CloseButton onPress={goBack} />
-  return (
-    <Header
-      title="Escolha uma especialidade"
-      RightButton={CloseButtonWithHandler}
-    />
   )
 }

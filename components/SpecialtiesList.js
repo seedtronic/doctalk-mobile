@@ -2,8 +2,9 @@ import React from "react"
 import { List } from "native-base"
 import SpecialtiesListItem from "./SpecialtiesListItem"
 import withSpecialties from "../lib/withSpecialties"
+import SpinnerView from "../components/SpinnerView"
 
-export default withSpecialties(SpecialtyListItems)
+export default withSpecialties(SpinnerView)(SpecialtyListItems)
 
 function SpecialtyListItems({ specialties }) {
   return (

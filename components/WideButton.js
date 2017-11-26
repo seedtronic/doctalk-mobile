@@ -16,7 +16,7 @@ export default function WideButton({
       <Button
         disabled={loading}
         style={{ margin: 10 }}
-        iconLeft
+        iconLeft={!!iconName}
         block
         {...props}
       >
@@ -29,8 +29,10 @@ export default function WideButton({
   function renderIcon() {
     if (loading) {
       return <Spinner color={color} />
-    } else {
+    } else if (iconName) {
       return <IconProvider name={iconName} size={24} color={color} />
+    } else {
+      return null
     }
   }
 }
