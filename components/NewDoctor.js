@@ -4,7 +4,7 @@ import { Form, H3, Item, Input, Label, Picker } from "native-base"
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view"
 import withSpecialties from "../lib/withSpecialties"
 import Header from "./Header"
-import BackButton from "./BackButton"
+import CloseButton from "./CloseButton"
 
 const Title = styled(H3)`
   margin-left: 15;
@@ -75,11 +75,11 @@ function NewDoctor({ specialties }) {
 }
 
 function buildSpecialtiesPickerHeader(goBack) {
-  const BackButtonWithHandler = () => <BackButton onPress={goBack} />
+  const CloseButtonWithHandler = () => <CloseButton onPress={goBack} />
   return (
     <Header
-      title="Selecione uma especialidade"
-      LeftButton={BackButtonWithHandler}
+      title="Escolha uma especialidade"
+      RightButton={CloseButtonWithHandler}
     />
   )
 }

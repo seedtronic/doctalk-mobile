@@ -1,11 +1,14 @@
 import React from "react"
 import GenericScreen from "./GenericScreen"
 import Search from "../components/Search"
-import CloseButton from "../components/CloseButton"
+import CloseButtonWithHandler from "../components/CloseButtonWithHandler"
 
 export default function SearchScreen() {
   return (
-    <GenericScreen title="Escolha a especialidade" RightButton={CloseButton}>
+    <GenericScreen
+      title="Escolha uma especialidade"
+      RightButton={CloseButtonWithHandler}
+    >
       <Search />
     </GenericScreen>
   )
