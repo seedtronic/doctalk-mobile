@@ -1,22 +1,9 @@
 import React from "react"
-import { branch, compose, renderComponent, withProps } from "recompose"
-import { graphql } from "react-apollo"
 import { List } from "native-base"
-import specialtiesQuery from "../graphql/specialtiesQuery"
 import SpecialtiesListItem from "./SpecialtiesListItem"
-import SpinnerView from "./SpinnerView"
+import withSpecialties from "../lib/withSpecialties"
 
-export default compose(
-  graphql(specialtiesQuery),
-  branch(({ data }) => data.loading, renderComponent(SpinnerView)),
-  withProps(({ data: { specialties } }) => {
-    return {
-      specialties: (specialties ? specialties.edges : []).map(
-        ({ node }) => node
-      )
-    }
-  })
-)(SpecialtyListItems)
+export default withSpecialties(SpecialtyListItems)
 
 function SpecialtyListItems({ specialties }) {
   return (

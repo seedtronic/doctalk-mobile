@@ -11,6 +11,6 @@ export default compose(
     label: "Cadastrar-me como médico"
   })),
   withHandlers({
-    onPress: ({ navigate }) => () => navigate("NewDoctor")
+    onPress: ({ navigate }) => navigate("NewDoctorScreen")
   })
 )(WideButton)
