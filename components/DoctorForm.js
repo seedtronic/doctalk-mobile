@@ -13,9 +13,9 @@ const Title = styled(H3)`
   margin-top: 20;
 `
 
-export default compose(reduxForm({ form: "NewDoctor" }))(NewDoctor)
+export default compose(reduxForm({ form: "Doctor" }))(DoctorForm)
 
-function NewDoctor({ handleSubmit }) {
+function DoctorForm({ handleSubmit }) {
   return (
     <KeyboardAwareScrollView>
       <Form>

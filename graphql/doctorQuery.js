@@ -6,6 +6,7 @@ export default gql`
       id
       name
       imageUrl
+      crm
       specialty {
         id
         title

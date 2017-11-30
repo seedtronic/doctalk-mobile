@@ -13,7 +13,7 @@ import DoctorScreen from "./DoctorScreen"
 import ShareLocationScreen from "./ShareLocationScreen"
 import SplashScreen from "./SplashScreen"
 import UserScreen from "./UserScreen"
-import NewDoctorScreen from "./NewDoctorScreen"
+import EditDoctorScreen from "./EditDoctorScreen"
 import TabBar from "../components/TabBar"
 
 const DoctorsNavigator = StackNavigator(
@@ -33,7 +33,7 @@ const ClinicsNavigator = StackNavigator(
 const UserNavigator = StackNavigator(
   {
     UserScreen: { screen: UserScreen },
-    NewDoctorScreen: { screen: NewDoctorScreen }
+    EditDoctorScreen: { screen: EditDoctorScreen }
   },
   { headerMode: "none" }
 )

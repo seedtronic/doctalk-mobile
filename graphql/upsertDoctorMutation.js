@@ -1,8 +1,8 @@
 import gql from "graphql-tag"
 
 export default gql`
-  mutation CreateDoctor($doctor: DoctorInput!) {
-    createDoctor(doctor: $doctor) {
+  mutation UpsertDoctor($doctor: DoctorInput!) {
+    upsertDoctor(doctor: $doctor) {
       id
       user {
         id
