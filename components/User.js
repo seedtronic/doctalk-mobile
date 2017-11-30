@@ -4,7 +4,7 @@ import { compose } from "recompose"
 import { View } from "react-native"
 import styled from "styled-components/native"
 import ClearLocalDataButton from "./ClearLocalDataButton"
-import NewDoctorButton from "./NewDoctorButton"
+import CurrentDoctorButton from "./CurrentDoctorButton"
 import GoogleButton from "./GoogleButton"
 import LogoutButton from "./LogoutButton"
 import UserProfile from "./UserProfile"
@@ -14,17 +14,17 @@ const Container = styled.View`
   align-items: stretch;
 `
 
-export default compose(connect(({ session: { user } }) => ({ user })))(User)
+export default compose(connect(({ session: { token } }) => ({ token })))(User)
 
-function User({ user }) {
+function User({ token }) {
   return (
     <Container>
       <View>
-        {user ? <UserProfile /> : <GoogleButton />}
-        <NewDoctorButton disabled={!user} />
+        {token ? <UserProfile /> : <GoogleButton />}
+        <CurrentDoctorButton />
       </View>
       <View>
-        {user && <LogoutButton />}
+        {token && <LogoutButton />}
         <ClearLocalDataButton />
       </View>
     </Container>

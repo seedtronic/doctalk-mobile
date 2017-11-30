@@ -1,8 +1,11 @@
 import React from "react"
-import { connect } from "react-redux"
+import { graphql } from "react-apollo"
+import { branch, compose, renderComponent } from "recompose"
 import { View } from "react-native"
 import styled from "styled-components/native"
 import { Text } from "native-base"
+import currentUserQuery from "../graphql/currentUserQuery"
+import SpinnerView from "./SpinnerView"
 
 const Container = styled.View`
   flex-direction: column;
@@ -26,7 +29,12 @@ const Name = styled(Text)`
   font-size: 26;
 `
 
-export default connect(({ session: { user } }) => ({ user }))(UserProfile)
+export default compose(
+  graphql(currentUserQuery, {
+    props: ({ data }) => ({ user: data.currentUser })
+  }),
+  branch(({ user }) => !user, renderComponent(SpinnerView))
+)(UserProfile)
 
 function UserProfile({ user }) {
   return (

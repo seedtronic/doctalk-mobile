@@ -3,17 +3,17 @@ import Expo from "expo"
 import { graphql } from "react-apollo"
 import { compose, withHandlers, withProps, withState } from "recompose"
 import loginWithGoogleMutation from "../graphql/loginWithGoogleMutation"
-import { setUser } from "../lib/reducers/session"
+import { setToken } from "../lib/reducers/session"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import WideButton from "./WideButton"
 
 export default compose(
-  connect(null, { setUser }),
+  connect(null, { setToken }),
   graphql(loginWithGoogleMutation, {
-    props: ({ mutate, ownProps: { setUser } }) => ({
+    props: ({ mutate, ownProps: { setToken } }) => ({
       loginWithGoogle: variables =>
         mutate({ variables }).then(response =>
-          setUser(response.data.loginWithGoogle)
+          setToken(response.data.loginWithGoogle.token)
         )
     })
   }),
