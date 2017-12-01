@@ -36,7 +36,9 @@ export default compose(
         loading: get(props, "data.loading", false)
       }
     },
-    fetchPolicy: "network-only",
+    options: {
+      fetchPolicy: "network-only"
+    },
     skip: ({ doctorId }) => !doctorId
   }),
   branch(({ loading }) => loading, renderComponent(SpinnerView)),
