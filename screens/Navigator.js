@@ -32,8 +32,7 @@ const ClinicsNavigator = StackNavigator(
 
 const UserNavigator = StackNavigator(
   {
-    UserScreen: { screen: UserScreen },
-    EditDoctorScreen: { screen: EditDoctorScreen }
+    UserScreen: { screen: UserScreen }
   },
   { headerMode: "none" }
 )
@@ -55,7 +54,8 @@ const SectionsNavigator = TabNavigator(
 const MainNavigator = StackNavigator(
   {
     SectionsNavigator: { screen: SectionsNavigator },
-    DoctorScreen: { screen: DoctorScreen }
+    DoctorScreen: { screen: DoctorScreen },
+    EditDoctorScreen: { screen: EditDoctorScreen }
   },
   { headerMode: "none" }
 )
