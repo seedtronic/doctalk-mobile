@@ -2,6 +2,7 @@
   "expo": {
     "name": "Doctalk",
     "orientation": "portrait",
+    "privacy": "public",
     "slug": "doctalk",
     "sdkVersion": "23.0.0"
   }
