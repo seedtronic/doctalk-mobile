@@ -9,6 +9,7 @@ class RootScreen extends Component {
   componentDidCatch(error, info) {
     console.log("Unhandled error", error, info)
     if (Expo.Constants.isDevice) {
+      this.props.resetState()
       setTimeout(Expo.Util.reload, 500)
     }
   }

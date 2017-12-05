@@ -14,7 +14,15 @@ import ShareLocationScreen from "./ShareLocationScreen"
 import SplashScreen from "./SplashScreen"
 import UserScreen from "./UserScreen"
 import EditDoctorScreen from "./EditDoctorScreen"
+import AgendaScreen from "./AgendaScreen"
 import TabBar from "../components/TabBar"
+
+const AgendaNavigator = StackNavigator(
+  {
+    AgendaScreen: { screen: AgendaScreen }
+  },
+  { headerMode: "none" }
+)
 
 const DoctorsNavigator = StackNavigator(
   {
@@ -39,6 +47,7 @@ const UserNavigator = StackNavigator(
 
 const SectionsNavigator = TabNavigator(
   {
+    AgendaNavigator: { screen: AgendaNavigator },
     DoctorsNavigator: { screen: DoctorsNavigator },
     ClinicsNavigator: { screen: ClinicsNavigator },
     UserNavigator: { screen: UserNavigator }
