@@ -22,7 +22,7 @@ const EditDoctorButton = compose(
 
 export default compose(
   withCurrentUser(false),
-  withProps(props => ({ doctorId: get(props, "currentUser.id") })),
+  withProps(props => ({ doctorId: get(props, "currentUser.doctor.id") })),
   graphql(doctorQuery, {
     props: ({ data: { doctor } }) => ({ doctor }),
     skip: ({ doctorId }) => !doctorId
