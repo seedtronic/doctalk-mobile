@@ -1,11 +1,11 @@
 import React from "react"
 import GenericScreen from "./GenericScreen"
-import Agenda from "../components/Agenda"
+import DoctorAgenda from "../components/DoctorAgenda"
 
 export default function() {
   return (
     <GenericScreen title="Minhas consultas">
-      <Agenda />
+      <DoctorAgenda />
     </GenericScreen>
   )
 }

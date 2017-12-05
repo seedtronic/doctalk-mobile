@@ -9,7 +9,7 @@ function TabBar({ currentUser }) {
   return (
     <Footer>
       <FooterTab>
-        {renderAgenda()}
+        {renderDoctorDoctorAgenda()}
         <TabButton
           label="Consulta"
           iconName="stethoscope"
@@ -29,13 +29,13 @@ function TabBar({ currentUser }) {
     </Footer>
   )
 
-  function renderAgenda() {
+  function renderDoctorDoctorAgenda() {
     if (currentUser && currentUser.doctor) {
       return (
         <TabButton
           label="Agenda"
           iconName="calendar"
-          routeName="AgendaNavigator"
+          routeName="DoctorAgendaNavigator"
         />
       )
     }
