@@ -1,7 +1,7 @@
 import gql from "graphql-tag"
 
 export default gql`
-  query DoctorQuery($doctorId: ID!) {
+  query Doctor($doctorId: ID!) {
     doctor(id: $doctorId) {
       id
       name

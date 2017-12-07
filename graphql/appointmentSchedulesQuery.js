@@ -1,12 +1,12 @@
 import gql from "graphql-tag"
 
 export default gql`
-  query Specialties {
-    specialties {
+  query AppointmentSchedules {
+    appointmentSchedules {
       edges {
         node {
           id
-          title
+          startedAt
         }
       }
     }

@@ -1,12 +1,12 @@
 import { graphql } from "react-apollo"
 import { compose, withHandlers } from "recompose"
 import AppointmentScheduleForm from "./AppointmentScheduleForm"
-import createAppointmentSchedule from "../graphql/createAppointmentSchedule"
+import createAppointmentScheduleMutation from "../graphql/createAppointmentScheduleMutation"
 import withNavigate from "../lib/withNavigate"
 import { DateTime } from "luxon"
 
 export default compose(
-  graphql(createAppointmentSchedule, {
+  graphql(createAppointmentScheduleMutation, {
     props: ({ mutate }) => ({
       createAppointmentSchedule: appointmentSchedule =>
         mutate({ variables: { appointmentSchedule } })
