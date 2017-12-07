@@ -1,7 +1,13 @@
 import React from "react"
+import styled from "styled-components/native"
 import { View } from "react-native"
 import { Button, Text } from "native-base"
 import Spinner from "./Spinner"
+
+const Label = styled(Text)`
+  padding-left: 5;
+  padding-right: 0;
+`
 
 export default function WideButton({
   iconName,
@@ -21,7 +27,7 @@ export default function WideButton({
         {...props}
       >
         {renderIcon()}
-        <Text size={24}>{label}</Text>
+        <Label size={24}>{label}</Label>
       </Button>
     </View>
   )

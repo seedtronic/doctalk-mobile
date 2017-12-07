@@ -10,7 +10,7 @@ function DoctorAgenda({ navigate }) {
     <WideButton
       iconName="add"
       IconProvider={MaterialIcons}
-      label="Adicionar horário"
+      label="Abrir horário para atendimento"
       onPress={navigate("NewAppointmentScheduleScreen")}
     />
   )

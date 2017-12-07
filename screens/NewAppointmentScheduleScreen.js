@@ -5,7 +5,10 @@ import NewAppointmentSchedule from "../components/NewAppointmentSchedule"
 
 export default function EditDoctorScreen() {
   return (
-    <GenericScreen title="Adicionar horário" LeftButton={BackButtonWithHandler}>
+    <GenericScreen
+      title="Novo horário para atendimento"
+      LeftButton={BackButtonWithHandler}
+    >
       <NewAppointmentSchedule />
     </GenericScreen>
   )

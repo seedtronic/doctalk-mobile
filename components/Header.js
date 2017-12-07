@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "styled-components/native"
 import {
   Body,
   Header as NativeBaseHeader,
@@ -13,14 +14,27 @@ export default function Header({
   LeftButton,
   RightButton
 }) {
-  const flex = 4 + (LeftButton ? 0 : 2) + (RightButton ? 0 : 2)
   return (
     <NativeBaseHeader>
-      <Left>{LeftButton && <LeftButton />}</Left>
-      <Body style={{ flex }}>{renderTitle()}</Body>
-      <Right>{RightButton && <RightButton />}</Right>
+      {renderButton(LeftButton, Left)}
+      <Body>{renderTitle()}</Body>
+      {renderButton(RightButton, Right)}
     </NativeBaseHeader>
   )
+
+  function renderButton(Button, Wrapper) {
+    if (Button) {
+      const StyledWrapper = styled(Wrapper)`
+        flex-basis: 22;
+        flex-grow: 0;
+      `
+      return (
+        <StyledWrapper>
+          <Button />
+        </StyledWrapper>
+      )
+    }
+  }
 
   function renderTitle() {
     if (TitleComponent) {

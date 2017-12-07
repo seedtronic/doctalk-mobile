@@ -74,7 +74,7 @@ function ShareLocation({
     if (permissionDenied) {
       return [
         <View key="1">
-          <Button block large disabled>
+          <Button large disabled>
             <Text>Compartilhar localização</Text>
           </Button>
         </View>,
@@ -87,9 +87,11 @@ function ShareLocation({
       ]
     } else {
       return (
-        <Button block large onPress={onPress}>
-          <Text>Compartilhar localização</Text>
-        </Button>
+        <View>
+          <Button large onPress={onPress}>
+            <Text>Compartilhar localização</Text>
+          </Button>
+        </View>
       )
     }
   }
