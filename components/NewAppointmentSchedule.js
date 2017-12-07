@@ -9,7 +9,10 @@ export default compose(
   graphql(createAppointmentScheduleMutation, {
     props: ({ mutate }) => ({
       createAppointmentSchedule: appointmentSchedule =>
-        mutate({ variables: { appointmentSchedule } })
+        mutate({
+          refetchQueries: ["AppointmentSchedules"],
+          variables: { appointmentSchedule }
+        })
     })
   }),
   withNavigate,
