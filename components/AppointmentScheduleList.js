@@ -13,14 +13,16 @@ import AppointmentScheduleListSectionHeader from "./AppointmentScheduleListSecti
 
 export default compose(
   graphql(appointmentSchedulesQuery, {
-    props: ({ data: { loading, appointmentSchedules } }) => ({
-      loading,
+    props: ({ data: { appointmentSchedules } }) => ({
       appointmentSchedules: appointmentSchedules
         ? appointmentSchedules.edges.map(({ node }) => node)
         : null
     })
   }),
-  branch(({ loading }) => loading, renderComponent(SpinnerView)),
+  branch(
+    ({ appointmentSchedules }) => !appointmentSchedules,
+    renderComponent(SpinnerView)
+  ),
   withProps(({ appointmentSchedules }) => ({
     appointmentSchedulesByDay: R.groupBy(
       R.compose(
