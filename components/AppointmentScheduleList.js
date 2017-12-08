@@ -3,13 +3,14 @@ import { ListView } from "react-native"
 import { graphql } from "react-apollo"
 import { branch, compose, renderComponent, withProps } from "recompose"
 import appointmentSchedulesQuery from "../graphql/appointmentSchedulesQuery"
-import { Button, Icon, List } from "native-base"
+import { List } from "native-base"
 import SpinnerView from "./SpinnerView"
 import AppointmentScheduleListItem from "./AppointmentScheduleListItem"
 import R from "ramda"
 import { DateTime } from "luxon"
 import AddAppointmentScheduleButton from "./AddAppointmentScheduleButton"
 import AppointmentScheduleListSectionHeader from "./AppointmentScheduleListSectionHeader"
+import DestroyAppointmentScheduleButton from "./DestroyAppointmentScheduleButton"
 
 export default compose(
   graphql(appointmentSchedulesQuery, {
@@ -76,8 +77,8 @@ function renderRow(appointmentSchedule) {
 
 function renderRightHiddenRow(appointmentSchedule) {
   return (
-    <Button full danger>
-      <Icon active name="trash" />
-    </Button>
+    <DestroyAppointmentScheduleButton
+      appointmentScheduleId={appointmentSchedule.id}
+    />
   )
 }
