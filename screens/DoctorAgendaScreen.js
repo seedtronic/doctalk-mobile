@@ -4,7 +4,7 @@ import DoctorAgenda from "../components/DoctorAgenda"
 
 export default function() {
   return (
-    <GenericScreen title="Minhas consultas">
+    <GenericScreen title="Meus consultas">
       <DoctorAgenda />
     </GenericScreen>
   )

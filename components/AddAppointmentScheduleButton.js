@@ -10,7 +10,7 @@ function NewAppointmentScheduleButton({ navigate }) {
     <WideButton
       iconName="add"
       IconProvider={MaterialIcons}
-      label="Abrir horário para atendimento"
+      label="Adicionar horário"
       onPress={navigate("NewAppointmentScheduleScreen")}
     />
   )

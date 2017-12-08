@@ -16,7 +16,7 @@ function DoctorForm({ handleSubmit }) {
         <FormEntry name="date" mode="date" InputComponent={DateTimeInput} />
         <FormEntry name="time" mode="time" InputComponent={DateTimeInput} />
       </Form>
-      <WideButton label="Abrir" onPress={handleSubmit} />
+      <WideButton label="Adicionar" onPress={handleSubmit} />
     </KeyboardAwareScrollView>
   )
 }
