@@ -11,9 +11,9 @@ export default function AppointmentScheduleListItem({ appointmentSchedule }) {
   return (
     <Item>
       <Text>
-        {DateTime.fromISO(appointmentSchedule.startedAt).toLocaleString(
-          DateTime.TIME_SIMPLE
-        )}
+        {DateTime.fromISO(appointmentSchedule.startedAt)
+          .setZone("America/Sao_Paulo")
+          .toLocaleString(DateTime.TIME_SIMPLE)}
       </Text>
     </Item>
   )

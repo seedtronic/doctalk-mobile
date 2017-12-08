@@ -34,7 +34,6 @@ function DateTimeInput({ isVisible, setIsVisible, value, onChange, mode }) {
       confirmTextIOS="Confirmar"
       cancelTextIOS="Cancelar"
       titleIOS={handlerByMode[mode].placeholder}
-      minimumDate={new Date()}
     />
   ]
 
