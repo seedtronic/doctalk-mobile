@@ -12,7 +12,7 @@ export default function AppointmentScheduleListItem({ appointmentSchedule }) {
     <Item>
       <Text>
         {DateTime.fromISO(appointmentSchedule.startedAt).toLocaleString(
-          DateTime.DATETIME_MED
+          DateTime.TIME_SIMPLE
         )}
       </Text>
     </Item>
