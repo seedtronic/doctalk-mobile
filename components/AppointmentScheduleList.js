@@ -1,11 +1,14 @@
 import React from "react"
 import { ListView } from "react-native"
 import { graphql } from "react-apollo"
-import { branch, compose, renderComponent } from "recompose"
+import { branch, compose, renderComponent, withProps } from "recompose"
 import appointmentSchedulesQuery from "../graphql/appointmentSchedulesQuery"
-import { Button, Icon, List } from "native-base"
+import { Button, Icon, List, Text } from "native-base"
 import SpinnerView from "./SpinnerView"
 import AppointmentScheduleListItem from "./AppointmentScheduleListItem"
+import R from "ramda"
+import { DateTime } from "luxon"
+import AddAppointmentScheduleButton from "./AddAppointmentScheduleButton"
 
 export default compose(
   graphql(appointmentSchedulesQuery, {
@@ -16,25 +19,47 @@ export default compose(
         : null
     })
   }),
-  branch(({ loading }) => loading, renderComponent(SpinnerView))
+  branch(({ loading }) => loading, renderComponent(SpinnerView)),
+  withProps(({ appointmentSchedules }) => ({
+    appointmentSchedulesByDay: R.groupBy(
+      R.compose(
+        startedAt => startedAt.toLocaleString(DateTime.DATE_HUGE),
+        DateTime.fromISO,
+        R.prop("startedAt")
+      ),
+      appointmentSchedules
+    )
+  }))
 )(AppointmentScheduleList)
 
-function AppointmentScheduleList({ appointmentSchedules }) {
+function AppointmentScheduleList({ appointmentSchedulesByDay }) {
   const dataSource = new ListView.DataSource({
-    rowHasChanged: (r1, r2) => r1 !== r2
-  }).cloneWithRows(appointmentSchedules)
+    rowHasChanged: (r1, r2) => r1 !== r2,
+    sectionHeaderHasChanged: (prevSectionData, nextSectionData) =>
+      prevSectionData !== nextSectionData
+  }).cloneWithRowsAndSections(appointmentSchedulesByDay)
   return (
     <List
       dataSource={dataSource}
+      renderHeader={renderHeader}
       renderRow={renderRow}
       renderLeftHiddenRow={() => null}
       renderRightHiddenRow={renderRightHiddenRow}
+      renderSectionHeader={renderSectionHeader}
       disableRightSwipe={true}
       leftOpenValue={75}
       rightOpenValue={-75}
       enableEmptySections={true}
     />
   )
+}
+
+function renderSectionHeader(sectionData, sectionId) {
+  return <Text>{sectionId}</Text>
+}
+
+function renderHeader() {
+  return <AddAppointmentScheduleButton />
 }
 
 function renderRow(appointmentSchedule) {

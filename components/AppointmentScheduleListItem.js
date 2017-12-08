@@ -11,9 +11,9 @@ export default function AppointmentScheduleListItem({ appointmentSchedule }) {
   return (
     <Item>
       <Text>
-        {DateTime.fromISO(appointmentSchedule.startedAt)
-          .setLocale("pt-BR")
-          .toLocaleString(DateTime.DATETIME_MED)}
+        {DateTime.fromISO(appointmentSchedule.startedAt).toLocaleString(
+          DateTime.DATETIME_MED
+        )}
       </Text>
     </Item>
   )
