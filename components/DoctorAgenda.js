@@ -3,6 +3,7 @@ import { graphql } from "react-apollo"
 import { compose, withProps } from "recompose"
 import doctorAppointmentSchedulesQuery from "../graphql/doctorAppointmentSchedulesQuery"
 import AppointmentScheduleList from "./AppointmentScheduleList"
+import AppointmentScheduleListItem from "./AppointmentScheduleListItem"
 import AddAppointmentScheduleButton from "./AddAppointmentScheduleButton"
 import DestroyAppointmentScheduleButton from "./DestroyAppointmentScheduleButton"
 import withCurrentUser from "../lib/withCurrentUser"
@@ -25,6 +26,7 @@ export default compose(
     }
   }),
   withProps({
+    ListItem: AppointmentScheduleListItem,
     renderHeader: () => <AddAppointmentScheduleButton />,
     renderRightHiddenRow: appointmentSchedule => (
       <DestroyAppointmentScheduleButton

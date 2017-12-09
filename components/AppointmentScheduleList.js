@@ -3,7 +3,6 @@ import { ListView } from "react-native"
 import { branch, compose, renderComponent, withProps } from "recompose"
 import { List } from "native-base"
 import SpinnerView from "./SpinnerView"
-import AppointmentScheduleListItem from "./AppointmentScheduleListItem"
 import R from "ramda"
 import { DateTime } from "luxon"
 import AppointmentScheduleListSectionHeader from "./AppointmentScheduleListSectionHeader"
@@ -28,6 +27,7 @@ export default compose(
 function AppointmentScheduleList({
   appointmentSchedules,
   appointmentSchedulesByDay,
+  ListItem,
   ...props
 }) {
   const dataSource = new ListView.DataSource({
@@ -40,7 +40,8 @@ function AppointmentScheduleList({
       renderLeftHiddenRow={() => null}
       renderRightHiddenRow={() => null}
       dataSource={dataSource}
-      renderRow={renderRow}
+      renderRow={appointmentSchedule =>
+        renderRow(appointmentSchedule, ListItem)}
       renderSectionHeader={renderSectionHeader}
       disableRightSwipe={true}
       disableLeftSwipe={!props.renderRightHiddenRow}
@@ -57,9 +58,9 @@ function renderSectionHeader(sectionData, sectionId) {
   return <AppointmentScheduleListSectionHeader content={sectionId} />
 }
 
-function renderRow(appointmentSchedule) {
+function renderRow(appointmentSchedule, ListItem) {
   return (
-    <AppointmentScheduleListItem
+    <ListItem
       key={appointmentSchedule.id}
       appointmentSchedule={appointmentSchedule}
     />
