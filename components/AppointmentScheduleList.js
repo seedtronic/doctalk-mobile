@@ -25,11 +25,7 @@ export default compose(
   }))
 )(AppointmentScheduleList)
 
-function AppointmentScheduleList({
-  appointmentSchedulesByDay,
-  renderHeader,
-  renderRightHiddenRow
-}) {
+function AppointmentScheduleList({ appointmentSchedulesByDay, ...props }) {
   const dataSource = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 !== r2,
     sectionHeaderHasChanged: (prevSectionData, nextSectionData) =>
@@ -37,17 +33,18 @@ function AppointmentScheduleList({
   }).cloneWithRowsAndSections(appointmentSchedulesByDay)
   return (
     <List
-      dataSource={dataSource}
-      renderHeader={renderHeader}
-      renderRow={renderRow}
       renderLeftHiddenRow={() => null}
-      renderRightHiddenRow={renderRightHiddenRow}
+      renderRightHiddenRow={() => null}
+      dataSource={dataSource}
+      renderRow={renderRow}
       renderSectionHeader={renderSectionHeader}
       disableRightSwipe={true}
-      disableLeftSwipe={!renderRightHiddenRow}
+      disableLeftSwipe={!props.renderRightHiddenRow}
+      disableRightSwipe={!props.renderLeftHiddenRow}
       leftOpenValue={75}
       rightOpenValue={-75}
       enableEmptySections={true}
+      {...props}
     />
   )
 }
