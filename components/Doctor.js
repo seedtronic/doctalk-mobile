@@ -1,9 +1,9 @@
 import React from "react"
 import { graphql } from "react-apollo"
 import { compose, withProps } from "recompose"
-import Profile from "../components/Profile"
-import doctorAppointmentSchedulesQuery from "../graphql/doctorAppointmentSchedulesQuery"
+import DoctorProfileHead from "./DoctorProfileHead"
 import AppointmentScheduleList from "./AppointmentScheduleList"
+import doctorAppointmentSchedulesQuery from "../graphql/doctorAppointmentSchedulesQuery"
 
 export default compose(
   withProps(({ doctor }) => ({
@@ -19,6 +19,6 @@ export default compose(
     })
   }),
   withProps(({ doctor }) => ({
-    renderHeader: () => <Profile subject={doctor} />
+    renderHeader: () => <DoctorProfileHead doctor={doctor} />
   }))
 )(AppointmentScheduleList)
