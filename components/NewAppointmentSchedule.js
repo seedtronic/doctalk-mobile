@@ -10,7 +10,7 @@ export default compose(
     props: ({ mutate }) => ({
       createAppointmentSchedule: appointmentSchedule =>
         mutate({
-          refetchQueries: ["AppointmentSchedules"],
+          refetchQueries: ["DoctorAppointmentSchedules"],
           variables: { appointmentSchedule }
         })
     })

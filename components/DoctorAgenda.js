@@ -11,7 +11,7 @@ export default compose(
   withCurrentUser(true),
   withProps(({ currentUser }) => ({
     doctorId: currentUser.doctor.id,
-    includeArchive: true,
+    includeArchive: false,
     includeScheduled: true
   })),
   graphql(doctorAppointmentSchedulesQuery, {

@@ -9,12 +9,12 @@ const Container = styled.View`
 `
 
 const MapContainer = styled.View`
-  height: 100;
+  height: 200;
 `
 const Content = styled(Text)`
-  font-size: 12;
+  font-size: 14;
   margin-left: 10;
-  margin-top: 5;
+  margin-top: 15;
 `
 
 export default function Address({

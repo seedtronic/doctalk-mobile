@@ -18,7 +18,12 @@ export default compose(
         : null
     })
   }),
-  withProps(({ doctor }) => ({
-    renderHeader: () => <DoctorProfileHead doctor={doctor} />
+  withProps(({ doctor, appointmentSchedules }) => ({
+    renderHeader: () => (
+      <DoctorProfileHead
+        doctor={doctor}
+        appointmentSchedules={appointmentSchedules}
+      />
+    )
   }))
 )(AppointmentScheduleList)

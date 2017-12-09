@@ -25,7 +25,11 @@ export default compose(
   }))
 )(AppointmentScheduleList)
 
-function AppointmentScheduleList({ appointmentSchedulesByDay, ...props }) {
+function AppointmentScheduleList({
+  appointmentSchedules,
+  appointmentSchedulesByDay,
+  ...props
+}) {
   const dataSource = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 !== r2,
     sectionHeaderHasChanged: (prevSectionData, nextSectionData) =>
