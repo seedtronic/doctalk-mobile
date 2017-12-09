@@ -9,7 +9,10 @@ export default compose(
     props: ({ mutate, ownProps: { appointmentScheduleId } }) => ({
       destroyAppointmentSchedule: () =>
         mutate({
-          refetchQueries: ["DoctorAppointmentSchedules"],
+          refetchQueries: [
+            "DoctorAppointmentSchedules",
+            "UserAppointmentSchedules"
+          ],
           variables: { appointmentScheduleId }
         })
     })

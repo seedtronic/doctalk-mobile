@@ -4,13 +4,13 @@ export default gql`
   query DoctorAppointmentSchedules(
     $doctorId: ID!
     $includeArchive: Boolean
-    $includeScheduled: Boolean
+    $excludeScheduled: Boolean
   ) {
     doctor(id: $doctorId) {
       id
       appointmentSchedules(
         includeArchive: $includeArchive
-        includeScheduled: $includeScheduled
+        excludeScheduled: $excludeScheduled
       ) {
         edges {
           node {

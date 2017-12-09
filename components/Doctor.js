@@ -9,8 +9,7 @@ import doctorAppointmentSchedulesQuery from "../graphql/doctorAppointmentSchedul
 export default compose(
   withProps(({ doctor }) => ({
     doctorId: doctor.id,
-    includeArchive: false,
-    includeScheduled: false
+    excludeScheduled: true
   })),
   graphql(doctorAppointmentSchedulesQuery, {
     props: ({ data }) => ({

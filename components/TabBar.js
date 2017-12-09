@@ -2,6 +2,7 @@ import React from "react"
 import { Footer, FooterTab } from "native-base"
 import TabButton from "./TabButton"
 import withCurrentUser from "../lib/withCurrentUser"
+import UserAgendaTabButton from "./UserAgendaTabButton"
 
 export default withCurrentUser(false)(TabBar)
 
@@ -9,7 +10,8 @@ function TabBar({ currentUser }) {
   return (
     <Footer>
       <FooterTab>
-        {renderDoctorDoctorAgenda()}
+        {renderDoctorAgenda()}
+        <UserAgendaTabButton />
         <TabButton
           label="Consulta"
           iconName="stethoscope"
@@ -29,7 +31,7 @@ function TabBar({ currentUser }) {
     </Footer>
   )
 
-  function renderDoctorDoctorAgenda() {
+  function renderDoctorAgenda() {
     if (currentUser && currentUser.doctor) {
       return (
         <TabButton

@@ -16,7 +16,7 @@ export default compose(
     onPress: ({ createAppointment, goBack, navigate }) => () =>
       createAppointment()
         .then(goBack)
-        .then(navigate("DoctorAgendaNavigator"))
+        .then(navigate("UserAgendaNavigator"))
   })
 )(CreateAppointmentButton)
 
