@@ -1,6 +1,7 @@
 import React from "react"
 import { ListView } from "react-native"
 import { List as NativeBaseList } from "native-base"
+import R from "ramda"
 
 export default function List({
   itemsBySection,
@@ -18,9 +19,8 @@ export default function List({
       renderLeftHiddenRow={() => null}
       renderRightHiddenRow={() => null}
       dataSource={dataSource}
-      renderRow={item => renderRow(item, ListItem)}
-      renderSectionHeader={(sectionData, sectionId) =>
-        renderSectionHeader(sectionData, sectionId, SectionHeader)}
+      renderRow={R.curry(renderRow)(ListItem)}
+      renderSectionHeader={R.curry(renderSectionHeader)(SectionHeader)}
       disableRightSwipe={true}
       disableLeftSwipe={!props.renderRightHiddenRow}
       disableRightSwipe={!props.renderLeftHiddenRow}
@@ -32,10 +32,10 @@ export default function List({
   )
 }
 
-function renderSectionHeader(sectionData, sectionId, SectionHeader) {
+function renderSectionHeader(SectionHeader, sectionData, sectionId) {
   return <SectionHeader sectionId={sectionId} />
 }
 
-function renderRow(item, ListItem) {
+function renderRow(ListItem, item) {
   return <ListItem key={item.id} item={item} />
 }
