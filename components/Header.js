@@ -8,6 +8,11 @@ import {
   Right
 } from "native-base"
 
+const TitleContainer = styled.View`
+  margin-left: ${({ pullLeft }) => (pullLeft ? -20 : 0)};
+  margin-right: ${({ pullRight }) => (pullRight ? -20 : 0)};
+`
+
 export default function Header({
   title,
   TitleComponent,
@@ -17,7 +22,11 @@ export default function Header({
   return (
     <NativeBaseHeader>
       {renderButton(LeftButton, Left)}
-      <Body>{renderTitle()}</Body>
+      <Body>
+        <TitleContainer pullLeft={!!LeftButton} pullRight={!!RightButton}>
+          {renderTitle()}
+        </TitleContainer>
+      </Body>
       {renderButton(RightButton, Right)}
     </NativeBaseHeader>
   )
