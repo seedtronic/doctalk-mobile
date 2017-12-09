@@ -8,7 +8,6 @@ export default function LiteMap({ latitude, longitude }) {
     longitude,
     ...defaultDelta
   }
-  console.log(region)
   return (
     <MapView
       provider={MapView.PROVIDER_GOOGLE}
