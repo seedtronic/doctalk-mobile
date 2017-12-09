@@ -3,7 +3,7 @@ import { withNavigation } from "react-navigation"
 import { branch, compose, renderComponent, withProps } from "recompose"
 import { graphql } from "react-apollo"
 import GenericScreen from "./GenericScreen"
-import DoctorProfile from "../components/DoctorProfile"
+import Profile from "../components/Profile"
 import doctorQuery from "../graphql/doctorQuery"
 import Spinner from "../components/Spinner"
 import BackButtonWithHandler from "../components/BackButtonWithHandler"
@@ -24,7 +24,7 @@ function DoctorScreen({ doctor }) {
       LeftButton={BackButtonWithHandler}
       title={doctor.specialty.title}
     >
-      <DoctorProfile doctor={doctor} />
+      <Profile subject={doctor} />
     </GenericScreen>
   )
 }

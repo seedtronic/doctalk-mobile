@@ -14,10 +14,10 @@ const Image = styled.Image`
   height: 50;
 `
 
-export default function PhotoMarker({ doctor: { name, imageUrl } }) {
+export default function PhotoMarker({ doctor: { name, photoUrl } }) {
   return (
     <Container>
-      <Image source={{ uri: imageUrl }} />
+      <Image source={{ uri: photoUrl }} />
     </Container>
   )
 }

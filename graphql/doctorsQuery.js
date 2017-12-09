@@ -7,7 +7,7 @@ export default gql`
         node {
           id
           name
-          imageUrl
+          photoUrl
           address {
             id
             lat

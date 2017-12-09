@@ -5,7 +5,7 @@ export default gql`
     doctor(id: $doctorId) {
       id
       name
-      imageUrl
+      photoUrl
       crm
       specialty {
         id

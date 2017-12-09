@@ -33,12 +33,12 @@ const Image = styled.Image`
   height: 50;
 `
 
-export default function FullDoctorMarker({ doctor: { name, imageUrl } }) {
+export default function FullDoctorMarker({ doctor: { name, photoUrl } }) {
   return (
     <View>
       <Container>
         <View>
-          <Image source={{ uri: imageUrl }} />
+          <Image source={{ uri: photoUrl }} />
         </View>
         <NameContainer>
           <Text style={{ color: "white" }}>{name}</Text>

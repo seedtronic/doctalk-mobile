@@ -22,7 +22,7 @@ export default compose(
   })),
   graphql(doctorQuery, {
     props: props => {
-      const { id, __typename, imageUrl, specialty, address, ...doctor } = get(
+      const { id, __typename, photoUrl, specialty, address, ...doctor } = get(
         props,
         "data.doctor",
         {}
