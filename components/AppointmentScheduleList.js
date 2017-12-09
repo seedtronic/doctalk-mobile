@@ -13,13 +13,6 @@ import AppointmentScheduleListSectionHeader from "./AppointmentScheduleListSecti
 import DestroyAppointmentScheduleButton from "./DestroyAppointmentScheduleButton"
 
 export default compose(
-  graphql(appointmentSchedulesQuery, {
-    props: ({ data: { appointmentSchedules } }) => ({
-      appointmentSchedules: appointmentSchedules
-        ? appointmentSchedules.edges.map(({ node }) => node)
-        : null
-    })
-  }),
   branch(
     ({ appointmentSchedules }) => !appointmentSchedules,
     renderComponent(SpinnerView)
