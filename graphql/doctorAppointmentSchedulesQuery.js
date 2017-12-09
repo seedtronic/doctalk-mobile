@@ -16,6 +16,13 @@ export default gql`
           node {
             id
             startedAt
+            appointment {
+              id
+              user {
+                id
+                name
+              }
+            }
           }
         }
       }
