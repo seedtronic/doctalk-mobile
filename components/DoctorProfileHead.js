@@ -13,7 +13,7 @@ export default function DoctorProfileHead({ doctor, appointmentSchedules }) {
     <DoctorProfile key="0" doctor={doctor} />,
     <Subtitle key="1">
       {appointmentSchedules && appointmentSchedules.length === 0
-        ? "Não há horários disponíveis"
+        ? "Não há horário disponível"
         : "Horários disponíveis"}
     </Subtitle>
   ]
