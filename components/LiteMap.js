@@ -13,6 +13,13 @@ export default function LiteMap({ latitude, longitude }) {
       provider={MapView.PROVIDER_GOOGLE}
       style={{ flex: 1, flexGrow: 1 }}
       initialRegion={region}
+      moveOnMarkerPress={false}
+      pitchEnabled={false}
+      scrollEnabled={false}
+      rotateEnabled={false}
+      zoomEnabled={false}
+      loadingEnabled
+      cacheEnabled
       liteMode
       showsUserLocation
     >

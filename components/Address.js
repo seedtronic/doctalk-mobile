@@ -5,7 +5,7 @@ import { Text } from "native-base"
 import isEmpty from "lodash/isEmpty"
 
 const Container = styled.View`
-  margin-top: 10;
+  margin-top: 15;
 `
 
 const MapContainer = styled.View`

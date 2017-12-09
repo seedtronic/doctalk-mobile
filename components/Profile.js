@@ -2,7 +2,7 @@ import React from "react"
 import { branch, compose, renderComponent } from "recompose"
 import { View } from "react-native"
 import styled from "styled-components/native"
-import { Text } from "native-base"
+import { H1 } from "native-base"
 import SpinnerView from "./SpinnerView"
 
 const Container = styled.View`
@@ -23,10 +23,6 @@ const Image = styled.Image`
   width: 100;
 `
 
-const Name = styled(Text)`
-  font-size: 26;
-`
-
 export default compose(
   branch(({ subject }) => !subject, renderComponent(SpinnerView))
 )(Profile)
@@ -38,7 +34,7 @@ function Profile({ subject: { name, photoUrl } }) {
         <Image source={{ uri: photoUrl }} />
       </ImageContainer>
       <View>
-        <Name>{name}</Name>
+        <H1>{name}</H1>
       </View>
     </Container>
   )
