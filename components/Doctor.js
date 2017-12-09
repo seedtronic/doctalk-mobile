@@ -16,7 +16,10 @@ export default compose(
       appointmentSchedules: data.doctor
         ? data.doctor.appointmentSchedules.edges.map(({ node }) => node)
         : null
-    })
+    }),
+    options: {
+      fetchPolicy: "cache-and-network"
+    }
   }),
   withProps(({ doctor, appointmentSchedules }) => ({
     renderHeader: () => (
