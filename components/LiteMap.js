@@ -12,7 +12,7 @@ export default function LiteMap({ latitude, longitude }) {
     <MapView
       provider={MapView.PROVIDER_GOOGLE}
       style={{ flex: 1, flexGrow: 1 }}
-      initialRegion={region}
+      region={region}
       moveOnMarkerPress={false}
       pitchEnabled={false}
       scrollEnabled={false}
