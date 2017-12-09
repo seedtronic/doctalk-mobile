@@ -39,7 +39,7 @@
     "graphql": "^0.11.7",
     "graphql-tag": "^2.5.0",
     "luxon": "^0.2.5",
-    "native-base": "^2.3.3",
+    "native-base": "https://github.com/marano/NativeBase.git#e7f85bed41e4db1f61083f62a8ad763918c3db03",
     "prettier": "1.7.4",
     "prettier-standard": "^7.0.1",
     "ramda": "^0.25.0",

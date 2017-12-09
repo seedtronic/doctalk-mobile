@@ -5122,9 +5122,9 @@ native-base-shoutem-theme@0.2.1:
     lodash "^4.10.1"
     prop-types "^15.5.10"
 
-native-base@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/native-base/-/native-base-2.3.3.tgz#de35234cf9cf8d24b5ce5e1720f8330dd5f3c96a"
+"native-base@https://github.com/marano/NativeBase.git#e7f85bed41e4db1f61083f62a8ad763918c3db03":
+  version "2.3.5"
+  resolved "https://github.com/marano/NativeBase.git#e7f85bed41e4db1f61083f62a8ad763918c3db03"
   dependencies:
     blueimp-md5 "^2.5.0"
     clamp "^1.0.1"
