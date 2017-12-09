@@ -7,11 +7,11 @@ const Item = styled(ListItem)`
   margin-left: 15;
 `
 
-export default function AppointmentScheduleListItem({ appointmentSchedule }) {
+export default function AppointmentScheduleListItem({ item }) {
   return (
     <Item>
       <Text>
-        {DateTime.fromISO(appointmentSchedule.startedAt)
+        {DateTime.fromISO(item.startedAt)
           .setZone("America/Sao_Paulo")
           .toLocaleString(DateTime.TIME_SIMPLE)}
       </Text>

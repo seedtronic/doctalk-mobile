@@ -13,10 +13,10 @@ const Container = styled.View`
   border-bottom-width: 1;
 `
 
-export default function({ content }) {
+export default function({ sectionId }) {
   return (
     <Container>
-      <H3>{content}</H3>
+      <H3>{sectionId}</H3>
     </Container>
   )
 }
