@@ -6,6 +6,7 @@ import AppointmentScheduleList from "./AppointmentScheduleList"
 import DoctorAppointmentScheduleListItem from "./DoctorAppointmentScheduleListItem"
 import AddAppointmentScheduleButton from "./AddAppointmentScheduleButton"
 import DestroyAppointmentScheduleButton from "./DestroyAppointmentScheduleButton"
+import DestroyAppointmentButton from "./DestroyAppointmentButton"
 import withCurrentUser from "../lib/withCurrentUser"
 import withRefetchOnChangeToCurrentScreen from "../lib/withRefetchOnChangeToCurrentScreen"
 
@@ -27,10 +28,15 @@ export default compose(
   withProps({
     ListItem: DoctorAppointmentScheduleListItem,
     renderHeader: () => <AddAppointmentScheduleButton />,
-    renderRightHiddenRow: appointmentSchedule => (
-      <DestroyAppointmentScheduleButton
-        appointmentScheduleId={appointmentSchedule.id}
-      />
-    )
+    renderRightHiddenRow: appointmentSchedule =>
+      appointmentSchedule.appointment ? (
+        <DestroyAppointmentButton
+          appointmentId={appointmentSchedule.appointment.id}
+        />
+      ) : (
+        <DestroyAppointmentScheduleButton
+          appointmentScheduleId={appointmentSchedule.id}
+        />
+      )
   })
 )(AppointmentScheduleList)
