@@ -5,6 +5,7 @@ import Address from "./Address"
 
 const Container = styled.View`
   flex-direction: column;
+  width: 100%;
 `
 
 export default function DoctorProfile({ doctor }) {

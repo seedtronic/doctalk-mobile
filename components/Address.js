@@ -15,7 +15,8 @@ const Content = styled(Text)`
   font-size: 14;
   margin-left: ${({ block }) => (block ? 10 : 0)};
   margin-right: ${({ block }) => (block ? 10 : 0)};
-  margin-top: 15;
+  margin-top: 10;
+  align-self: flex-start;
 `
 
 export default function Address({
