@@ -8,7 +8,13 @@ import withNavigate from "../lib/withNavigate"
 export default compose(
   graphql(createAppointmentMutation, {
     props: ({ mutate, ownProps: { appointmentScheduleId } }) => ({
-      createAppointment: () => mutate({ variables: { appointmentScheduleId } })
+      createAppointment: () => mutate({ variables: { appointmentScheduleId } }),
+      options: {
+        refetchQueries: [
+          "DoctorAppointmentSchedules",
+          "UserAppointmentSchedules"
+        ]
+      }
     })
   }),
   withNavigate,
