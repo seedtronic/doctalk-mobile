@@ -1,11 +1,18 @@
 import React from "react"
+import { connect } from "react-redux"
 import { graphql } from "react-apollo"
-import { compose, withHandlers } from "recompose"
+import { branch, compose, renderComponent, withHandlers } from "recompose"
 import { Button, Text } from "native-base"
 import createAppointmentMutation from "../graphql/createAppointmentMutation"
 import withNavigate from "../lib/withNavigate"
+import withGoogleLogin from "../lib/withGoogleLogin"
 
 export default compose(
+  connect(({ session: { token } }) => ({ token })),
+  branch(
+    ({ token }) => !token,
+    renderComponent(withGoogleLogin(CreateAppointmentButton))
+  ),
   graphql(createAppointmentMutation, {
     props: ({ mutate, ownProps: { appointmentScheduleId } }) => ({
       createAppointment: () => mutate({ variables: { appointmentScheduleId } }),
@@ -26,7 +33,7 @@ export default compose(
   })
 )(CreateAppointmentButton)
 
-function CreateAppointmentButton({ onPress, appointmentScheduleId }) {
+function CreateAppointmentButton({ onPress }) {
   return (
     <Button small onPress={onPress}>
       <Text>Marcar consulta</Text>
