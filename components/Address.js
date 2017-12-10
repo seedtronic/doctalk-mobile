@@ -9,7 +9,7 @@ const Container = styled.View`
 `
 
 const MapContainer = styled.View`
-  height: 200;
+  height: ${({ height }) => height};
 `
 const Content = styled(Text)`
   font-size: 14;
@@ -21,13 +21,14 @@ const Content = styled(Text)`
 
 export default function Address({
   address: { street, number, complement, city, state, zipcode, lat, lng },
-  block
+  block,
+  mapHeight
 }) {
   const complementPart = isEmpty(complement) ? "" : `, ${complement}`
   const content = `${street} ${number}${complementPart}, ${city} / ${state} - ${zipcode}`
   return (
     <Container>
-      <MapContainer>
+      <MapContainer height={mapHeight}>
         <LiteMap latitude={lat} longitude={lng} />
       </MapContainer>
       <Content block={block}>{content}</Content>

@@ -29,7 +29,6 @@ function TabButton({
   isCurrentRoutePath,
   currentRoutePath
 }) {
-  console.log(currentRoutePath)
   return (
     <Button onPress={navigate(routeName)} active={isCurrentRoutePath} vertical>
       <MaterialCommunityIcons

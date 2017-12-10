@@ -5,6 +5,7 @@ import DoctorProfileHead from "./DoctorProfileHead"
 import AppointmentScheduleList from "./AppointmentScheduleList"
 import AvailableAppointmentScheduleListItem from "./AvailableAppointmentScheduleListItem"
 import doctorAppointmentSchedulesQuery from "../graphql/doctorAppointmentSchedulesQuery"
+import withSpinnerWhenLoading from "../lib/withSpinnerWhenLoading"
 
 export default compose(
   withProps(({ doctor }) => ({
@@ -12,15 +13,18 @@ export default compose(
     excludeScheduled: true
   })),
   graphql(doctorAppointmentSchedulesQuery, {
-    props: ({ data }) => ({
-      appointmentSchedules: data.doctor
-        ? data.doctor.appointmentSchedules.edges.map(({ node }) => node)
-        : null
-    }),
+    props: ({ data: { doctor } }) => {
+      return {
+        appointmentSchedules: doctor
+          ? doctor.appointmentSchedules.edges.map(({ node }) => node)
+          : null
+      }
+    },
     options: {
       fetchPolicy: "cache-and-network"
     }
   }),
+  withSpinnerWhenLoading("appointmentSchedules"),
   withProps(({ doctor, appointmentSchedules }) => ({
     ListItem: AvailableAppointmentScheduleListItem,
     renderHeader: () => (

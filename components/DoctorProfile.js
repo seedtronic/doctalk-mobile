@@ -11,7 +11,7 @@ export default function DoctorProfile({ doctor }) {
   return (
     <Container>
       <Profile key="0" subject={doctor} />
-      <Address key="1" address={doctor.address} block />
+      <Address key="1" address={doctor.address} mapHeight={200} block />
     </Container>
   )
 }

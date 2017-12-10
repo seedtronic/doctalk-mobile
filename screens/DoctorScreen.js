@@ -13,9 +13,10 @@ export default compose(
   withProps(({ navigation }) => ({
     doctorId: navigation.state.params.doctorId
   })),
-  graphql(doctorQuery),
-  branch(({ data }) => data.loading, renderComponent(Loading)),
-  withProps(({ data: { doctor } }) => ({ doctor }))
+  graphql(doctorQuery, {
+    props: ({ data: { doctor } }) => ({ doctor })
+  }),
+  branch(({ doctor }) => !doctor, renderComponent(Loading))
 )(DoctorScreen)
 
 function DoctorScreen({ doctor }) {

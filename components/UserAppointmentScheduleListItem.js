@@ -24,7 +24,7 @@ export default function UserAppointmentScheduleListItem({ item }) {
             .toLocaleString(DateTime.TIME_SIMPLE)}
         </Text>
       </Time>
-      <DoctorProfileLite doctor={item.doctor} />
+      <DoctorProfileLite doctor={item.doctor} mapHeight={200} />
     </Item>
   )
 }

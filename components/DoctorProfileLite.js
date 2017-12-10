@@ -8,7 +8,7 @@ const Container = styled.View`
   width: 100%;
 `
 
-export default function DoctorProfileLite({ doctor }) {
+export default function DoctorProfileLite({ doctor, mapHeight }) {
   return (
     <Container>
       <ProfileInline
@@ -16,7 +16,7 @@ export default function DoctorProfileLite({ doctor }) {
         subject={doctor}
         subtitle={doctor.specialty.title}
       />
-      <Address key="1" address={doctor.address} />
+      <Address key="1" address={doctor.address} mapHeight={mapHeight} />
     </Container>
   )
 }
