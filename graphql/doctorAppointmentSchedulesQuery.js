@@ -21,6 +21,7 @@ export default gql`
               user {
                 id
                 name
+                photoUrl
               }
             }
           }
