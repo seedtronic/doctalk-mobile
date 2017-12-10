@@ -6,11 +6,12 @@ import DoctorProfileLite from "./DoctorProfileLite"
 
 const Item = styled(ListItem)`
   flex-direction: column;
+  padding-left: 10;
+  padding-right: 10;
 `
 const Time = styled.View`
   align-self: flex-start;
   margin-bottom: 15;
-  margin-left: 15;
 `
 
 export default function UserAppointmentScheduleListItem({ item }) {

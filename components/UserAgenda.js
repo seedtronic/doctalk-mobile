@@ -4,9 +4,10 @@ import { compose, withProps } from "recompose"
 import userAppointmentSchedulesQuery from "../graphql/userAppointmentSchedulesQuery"
 import AppointmentScheduleList from "./AppointmentScheduleList"
 import UserAppointmentScheduleListItem from "./UserAppointmentScheduleListItem"
-import DestroyAppointmentScheduleButton from "./DestroyAppointmentScheduleButton"
+import DestroyAppointmentButton from "./DestroyAppointmentButton"
 import withCurrentUser from "../lib/withCurrentUser"
 import withRefetchOnChangeToCurrentScreen from "../lib/withRefetchOnChangeToCurrentScreen"
+import withNavigate from "../lib/withNavigate"
 
 export default compose(
   withCurrentUser(true),
@@ -22,12 +23,15 @@ export default compose(
     }
   }),
   withRefetchOnChangeToCurrentScreen("UserAgendaScreen"),
-  withProps({
+  withNavigate,
+  withProps(({ navigate }) => ({
+    onEmptyList: navigate("DoctorsNavigator"),
     ListItem: UserAppointmentScheduleListItem,
-    renderRightHiddenRow: appointmentSchedule => (
-      <DestroyAppointmentScheduleButton
-        appointmentScheduleId={appointmentSchedule.id}
-      />
-    )
-  })
+    renderRightHiddenRow: appointmentSchedule =>
+      appointmentSchedule.appointment && (
+        <DestroyAppointmentButton
+          appointmentId={appointmentSchedule.appointment.id}
+        />
+      )
+  }))
 )(AppointmentScheduleList)
