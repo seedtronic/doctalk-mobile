@@ -6,8 +6,9 @@ import {
   TabNavigator
 } from "react-navigation"
 import AppointmentTypeScreen from "./AppointmentTypeScreen"
-import DoctorsScreen from "./DoctorsScreen"
 import SearchScreen from "./SearchScreen"
+import DoctorSearchByListScreen from "./DoctorSearchByListScreen"
+import DoctorSearchByMapScreen from "./DoctorSearchByMapScreen"
 import ClinicsScreen from "./ClinicsScreen"
 import DoctorScreen from "./DoctorScreen"
 import ShareLocationScreen from "./ShareLocationScreen"
@@ -18,6 +19,7 @@ import DoctorAgendaScreen from "./DoctorAgendaScreen"
 import UserAgendaScreen from "./UserAgendaScreen"
 import NewAppointmentScheduleScreen from "./NewAppointmentScheduleScreen"
 import TabBar from "../components/TabBar"
+import None from "../components/None"
 
 const DoctorAgendaNavigator = StackNavigator(
   {
@@ -33,11 +35,18 @@ const UserAgendaNavigator = StackNavigator(
   { headerMode: "none" }
 )
 
-const DoctorsNavigator = StackNavigator(
+const DoctorSearchNavigator = TabNavigator(
   {
-    DoctorsScreen: { screen: DoctorsScreen }
+    DoctorSearchByListScreen: { screen: DoctorSearchByListScreen },
+    DoctorSearchByMapScreen: { screen: DoctorSearchByMapScreen }
   },
-  { headerMode: "none" }
+  {
+    animationEnabled: true,
+    tabBarPosition: "top",
+    initialRouteName: "DoctorSearchByListScreen",
+    lazy: true,
+    tabBarComponent: None
+  }
 )
 
 const ClinicsNavigator = StackNavigator(
@@ -58,13 +67,13 @@ const SectionsNavigator = TabNavigator(
   {
     DoctorAgendaNavigator: { screen: DoctorAgendaNavigator },
     UserAgendaNavigator: { screen: UserAgendaNavigator },
-    DoctorsNavigator: { screen: DoctorsNavigator },
+    DoctorSearchNavigator: { screen: DoctorSearchNavigator },
     ClinicsNavigator: { screen: ClinicsNavigator },
     UserNavigator: { screen: UserNavigator }
   },
   {
     animationEnabled: true,
-    initialRouteName: "DoctorsNavigator",
+    initialRouteName: "DoctorSearchNavigator",
     lazy: true,
     tabBarComponent: TabBar
   }

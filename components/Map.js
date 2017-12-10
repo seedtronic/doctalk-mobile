@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { graphql } from "react-apollo"
-import Expo, { MapView } from "expo"
+import { MapView } from "expo"
 import {
   branch,
   compose,
@@ -14,13 +14,15 @@ import MapDoctorPin from "./MapDoctorPin"
 import SpinnerView from "./SpinnerView"
 import doctorsQuery from "../graphql/doctorsQuery"
 import { setRegion, setLoading } from "../lib/reducers/map"
+import loadCurrentLocation from "../lib/loadCurrentLocation"
+import withWatchProp from "../lib/withWatchProp"
 
 export default compose(
   connect(({ map }) => ({ map }), { setRegion }),
   lifecycle({
     componentWillMount() {
       if (!this.props.map.region) {
-        loadCurrentLocation(this.props)
+        loadCurrentLocation(this.props.setRegion)
       }
     }
   }),
@@ -40,13 +42,7 @@ export default compose(
     }
   }),
   connect(null, { setLoading }),
-  lifecycle({
-    componentWillReceiveProps(nextProps) {
-      if (this.props.loading !== nextProps.loading) {
-        nextProps.setLoading(nextProps.loading)
-      }
-    }
-  }),
+  withWatchProp("loading", ({ setLoading }) => setLoading),
   withState("localRegion", "setLocalRegion", ({ map: { region } }) => region)
 )(Map)
 
@@ -64,10 +60,4 @@ function Map({ doctors, localRegion, setLocalRegion, setRegion }) {
       {doctors.map(doctor => <MapDoctorPin key={doctor.id} doctor={doctor} />)}
     </MapView>
   )
-}
-
-async function loadCurrentLocation(props) {
-  const result = await Expo.Location.getCurrentPositionAsync()
-  const { latitude, longitude } = result.coords
-  props.setRegion({ latitude, longitude })
 }

@@ -10,8 +10,18 @@ export default gql`
           photoUrl
           address {
             id
+            street
+            number
+            complement
+            city
+            state
+            zipcode
             lat
             lng
+          }
+          specialty {
+            id
+            title
           }
         }
       }

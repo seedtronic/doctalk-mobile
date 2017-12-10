@@ -4,16 +4,20 @@ import { List as NativeBaseList } from "native-base"
 import R from "ramda"
 
 export default function List({
+  items,
   itemsBySection,
   SectionHeader,
   ListItem,
   ...props
 }) {
-  const dataSource = new ListView.DataSource({
+  const emptyDataSource = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 !== r2,
     sectionHeaderHasChanged: (prevSectionData, nextSectionData) =>
       prevSectionData !== nextSectionData
-  }).cloneWithRowsAndSections(itemsBySection)
+  })
+  const dataSource = items
+    ? emptyDataSource.cloneWithRows(items)
+    : emptyDataSource.cloneWithRowsAndSections(itemsBySection)
   return (
     <NativeBaseList
       renderLeftHiddenRow={() => null}
@@ -33,7 +37,9 @@ export default function List({
 }
 
 function renderSectionHeader(SectionHeader, sectionData, sectionId) {
-  return <SectionHeader sectionId={sectionId} />
+  if (SectionHeader) {
+    return <SectionHeader sectionId={sectionId} />
+  }
 }
 
 function renderRow(ListItem, item) {

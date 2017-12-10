@@ -5,6 +5,7 @@ import { Button, Text } from "native-base"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import withNavigate from "../lib/withNavigate"
 import withIsCurrentRouteGetters from "../lib/withIsCurrentRouteGetters"
+import withCurrentRoute from "../lib/withCurrentRoute"
 
 const Label = styled(Text)`
   padding-left: 0;
@@ -13,6 +14,7 @@ const Label = styled(Text)`
 
 export default compose(
   withNavigate,
+  withCurrentRoute,
   withIsCurrentRouteGetters,
   withProps(({ getIsCurrentRoutePath, routeName }) => ({
     isCurrentRoutePath: getIsCurrentRoutePath(routeName)
@@ -24,8 +26,10 @@ function TabButton({
   iconName,
   label,
   navigate,
-  isCurrentRoutePath
+  isCurrentRoutePath,
+  currentRoutePath
 }) {
+  console.log(currentRoutePath)
   return (
     <Button onPress={navigate(routeName)} active={isCurrentRoutePath} vertical>
       <MaterialCommunityIcons

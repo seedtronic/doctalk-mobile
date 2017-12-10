@@ -1,5 +1,4 @@
-import { branch, compose, renderComponent, withProps } from "recompose"
-import SpinnerView from "./SpinnerView"
+import { compose, withProps } from "recompose"
 import R from "ramda"
 import { DateTime } from "luxon"
 import List from "./List"

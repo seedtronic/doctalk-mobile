@@ -8,7 +8,7 @@ const Container = styled.View`
   width: 100%;
 `
 
-export default function DoctorProfile({ doctor }) {
+export default function DoctorProfileLite({ doctor }) {
   return (
     <Container>
       <ProfileInline

@@ -15,7 +15,7 @@ function TabBar({ currentUser }) {
         <TabButton
           label="Consulta"
           iconName="stethoscope"
-          routeName="DoctorsNavigator"
+          routeName="DoctorSearchNavigator"
         />
         <TabButton
           label="Exame"
