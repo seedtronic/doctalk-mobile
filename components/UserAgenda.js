@@ -3,7 +3,7 @@ import { graphql } from "react-apollo"
 import { compose, withProps } from "recompose"
 import userAppointmentSchedulesQuery from "../graphql/userAppointmentSchedulesQuery"
 import AppointmentScheduleList from "./AppointmentScheduleList"
-import AppointmentScheduleListItem from "./AppointmentScheduleListItem"
+import UserAppointmentScheduleListItem from "./UserAppointmentScheduleListItem"
 import DestroyAppointmentScheduleButton from "./DestroyAppointmentScheduleButton"
 import withCurrentUser from "../lib/withCurrentUser"
 import withRefetchOnChangeToCurrentScreen from "../lib/withRefetchOnChangeToCurrentScreen"
@@ -23,7 +23,7 @@ export default compose(
   }),
   withRefetchOnChangeToCurrentScreen("UserAgendaScreen"),
   withProps({
-    ListItem: AppointmentScheduleListItem,
+    ListItem: UserAppointmentScheduleListItem,
     renderRightHiddenRow: appointmentSchedule => (
       <DestroyAppointmentScheduleButton
         appointmentScheduleId={appointmentSchedule.id}

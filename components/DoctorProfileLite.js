@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components/native"
-import Profile from "./Profile"
+import ProfileInline from "./ProfileInline"
 import Address from "./Address"
 
 const Container = styled.View`
@@ -10,8 +10,12 @@ const Container = styled.View`
 export default function DoctorProfile({ doctor }) {
   return (
     <Container>
-      <Profile key="0" subject={doctor} />
-      <Address key="1" address={doctor.address} block />
+      <ProfileInline
+        key="0"
+        subject={doctor}
+        subtitle={doctor.specialty.title}
+      />
+      <Address key="1" address={doctor.address} />
     </Container>
   )
 }

@@ -13,12 +13,14 @@ const MapContainer = styled.View`
 `
 const Content = styled(Text)`
   font-size: 14;
-  margin-left: 10;
+  margin-left: ${({ block }) => (block ? 10 : 0)};
+  margin-right: ${({ block }) => (block ? 10 : 0)};
   margin-top: 15;
 `
 
 export default function Address({
-  address: { street, number, complement, city, state, zipcode, lat, lng }
+  address: { street, number, complement, city, state, zipcode, lat, lng },
+  block
 }) {
   const complementPart = isEmpty(complement) ? "" : `, ${complement}`
   const content = `${street} ${number}${complementPart}, ${city} / ${state} - ${zipcode}`
@@ -27,7 +29,7 @@ export default function Address({
       <MapContainer>
         <LiteMap latitude={lat} longitude={lng} />
       </MapContainer>
-      <Content>{content}</Content>
+      <Content block={block}>{content}</Content>
     </Container>
   )
 }

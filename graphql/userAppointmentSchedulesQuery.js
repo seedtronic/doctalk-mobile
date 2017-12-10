@@ -12,9 +12,21 @@ export default gql`
             doctor {
               id
               name
+              photoUrl
               specialty {
                 id
                 title
+              }
+              address {
+                id
+                street
+                number
+                complement
+                city
+                state
+                zipcode
+                lat
+                lng
               }
             }
           }
