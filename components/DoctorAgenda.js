@@ -1,12 +1,13 @@
 import React from "react"
 import { graphql } from "react-apollo"
-import { compose, withProps } from "recompose"
+import { branch, compose, renderComponent, withProps } from "recompose"
 import doctorAppointmentSchedulesQuery from "../graphql/doctorAppointmentSchedulesQuery"
 import AppointmentScheduleList from "./AppointmentScheduleList"
 import DoctorAppointmentScheduleListItem from "./DoctorAppointmentScheduleListItem"
 import AddAppointmentScheduleButton from "./AddAppointmentScheduleButton"
 import DestroyAppointmentScheduleButton from "./DestroyAppointmentScheduleButton"
 import DestroyAppointmentButton from "./DestroyAppointmentButton"
+import SpinnerView from "./SpinnerView"
 import withCurrentUser from "../lib/withCurrentUser"
 import withRefetchOnChangeToCurrentScreen from "../lib/withRefetchOnChangeToCurrentScreen"
 
@@ -25,6 +26,10 @@ export default compose(
     }
   }),
   withRefetchOnChangeToCurrentScreen("DoctorAgendaScreen"),
+  branch(
+    ({ appointmentSchedules }) => !appointmentSchedules,
+    renderComponent(SpinnerView)
+  ),
   withProps({
     ListItem: DoctorAppointmentScheduleListItem,
     renderHeader: () => <AddAppointmentScheduleButton />,

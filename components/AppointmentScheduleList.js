@@ -6,10 +6,6 @@ import List from "./List"
 import AppointmentScheduleListSectionHeader from "./AppointmentScheduleListSectionHeader"
 
 export default compose(
-  branch(
-    ({ appointmentSchedules }) => !appointmentSchedules,
-    renderComponent(SpinnerView)
-  ),
   withProps(({ appointmentSchedules }) => ({
     itemsBySection: R.groupBy(
       R.compose(
