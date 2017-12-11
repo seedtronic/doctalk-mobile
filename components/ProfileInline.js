@@ -20,7 +20,7 @@ export default compose(
 function ProfileInline({ subtitle, subject: { name, photoUrl } }) {
   return (
     <Container>
-      <ProfileImage photoUrl={photoUrl} size={60} />
+      <ProfileImage photoUrl={photoUrl} size={55} />
       <TextContainer>
         <H1>{name}</H1>
         <H2>{subtitle}</H2>
