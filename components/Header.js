@@ -12,15 +12,22 @@ const TitleContainer = styled.View`
   margin-left: ${({ pullLeft }) => (pullLeft ? -20 : 0)};
   margin-right: ${({ pullRight }) => (pullRight ? -20 : 0)};
 `
+const TabsContainer = styled.View`
+  border-bottom-width: 0.5;
+  border-bottom-color: #a7a6ab;
+  elevation: 3;
+  margin-top: -10;
+`
 
 export default function Header({
   title,
   TitleComponent,
   LeftButton,
-  RightButton
+  RightButton,
+  Tabs
 }) {
-  return (
-    <NativeBaseHeader>
+  return [
+    <NativeBaseHeader key="0" hasTabs={!!Tabs}>
       {renderButton(LeftButton, Left)}
       <Body>
         <TitleContainer pullLeft={!!LeftButton} pullRight={!!RightButton}>
@@ -28,8 +35,13 @@ export default function Header({
         </TitleContainer>
       </Body>
       {renderButton(RightButton, Right)}
-    </NativeBaseHeader>
-  )
+    </NativeBaseHeader>,
+    Tabs && (
+      <TabsContainer key="1">
+        <Tabs />
+      </TabsContainer>
+    )
+  ]
 
   function renderButton(Button, Wrapper) {
     if (Button) {

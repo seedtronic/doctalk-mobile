@@ -11,6 +11,7 @@ export default function({
   TitleComponent,
   LeftButton,
   RightButton,
+  HeaderTabs,
   children
 }) {
   return [
@@ -20,6 +21,7 @@ export default function({
       TitleComponent={TitleComponent}
       LeftButton={LeftButton}
       RightButton={RightButton}
+      Tabs={HeaderTabs}
     />,
     <Content key="1">{children}</Content>
   ]
