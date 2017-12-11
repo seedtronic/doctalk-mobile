@@ -19,7 +19,7 @@ import DoctorAgendaScreen from "./DoctorAgendaScreen"
 import UserAgendaScreen from "./UserAgendaScreen"
 import NewAppointmentScheduleScreen from "./NewAppointmentScheduleScreen"
 import TabBar from "../components/TabBar"
-import None from "../components/None"
+import DoctorSearchHeader from "../components/DoctorSearchHeader"
 
 const DoctorAgendaNavigator = StackNavigator(
   {
@@ -45,7 +45,7 @@ const DoctorSearchNavigator = TabNavigator(
     tabBarPosition: "top",
     initialRouteName: "DoctorSearchByListScreen",
     lazy: true,
-    tabBarComponent: None
+    tabBarComponent: DoctorSearchHeader
   }
 )
 

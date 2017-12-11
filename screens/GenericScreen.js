@@ -15,14 +15,16 @@ export default function({
   children
 }) {
   return [
-    <Header
-      key="0"
-      title={title}
-      TitleComponent={TitleComponent}
-      LeftButton={LeftButton}
-      RightButton={RightButton}
-      Tabs={HeaderTabs}
-    />,
+    (title || TitleComponent) && (
+      <Header
+        key="0"
+        title={title}
+        TitleComponent={TitleComponent}
+        LeftButton={LeftButton}
+        RightButton={RightButton}
+        Tabs={HeaderTabs}
+      />
+    ),
     <Content key="1">{children}</Content>
   ]
 }
