@@ -2,17 +2,18 @@ import React from "react"
 import styled from "styled-components/native"
 import { connect } from "react-redux"
 import { compose } from "recompose"
-import { Icon, Text } from "native-base"
+import { Text } from "native-base"
+import { MaterialIcons } from "@expo/vector-icons"
 import withNavigate from "../lib/withNavigate"
 import FakeSmallButton from "./FakeSmallButton"
 
 const StyledText = styled(Text)`
   font-size: 18;
   color: white;
-  margin-left: 10;
+  margin-left: 5;
 `
 
-const SearchIcon = styled(Icon).attrs({ name: "search" })`
+const SearchIcon = styled(MaterialIcons).attrs({ name: "search" })`
   fontSize: 22;
   color: white;
   background-color: transparent;
