@@ -13,12 +13,12 @@ export default compose(
       (getIsCurrentRoute("DoctorSearchByMapScreen") && map.loading),
     renderComponent(LoadingMessage)
   )
-)(MapTitle)
+)(DoctorSearchHeaderTitle)
 
 export function LoadingMessage() {
   return <Title>Buscando médicos</Title>
 }
 
-export function MapTitle() {
+export function DoctorSearchHeaderTitle() {
   return <Title>Escolha um médico</Title>
 }
