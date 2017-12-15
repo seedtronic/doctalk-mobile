@@ -1,44 +1,38 @@
 import React from "react"
+import styled from "styled-components/native"
 import { connect } from "react-redux"
 import withNavigate from "../lib/withNavigate"
 import { compose, withProps } from "recompose"
-import { setFilterSpecialtyId } from "../lib/reducers/map"
+import { setSpecialty } from "../lib/reducers/doctors"
 import { ListItem, Text } from "native-base"
+
+const StyledListItem = styled(ListItem)`
+  background-color: ${props => (props.isSelected ? "#62b1f6" : "white")};
+  padding-left: 10;
+`
+const StyledText = styled(Text)`
+  color: ${props => (props.isSelected ? "white" : "black")};
+`
 
 export default compose(
   withNavigate,
-  connect(({ map: { filter: { specialtyId } } }) => ({ specialtyId }), {
-    setFilterSpecialtyId
+  connect(({ doctors: { specialty } }) => ({ selectedSpecialty: specialty }), {
+    setSpecialty
   }),
-  withProps(({ specialty, specialtyId }) => ({
-    isSelected: specialty.id === specialtyId
+  withProps(({ item, selectedSpecialty }) => ({
+    specialty: item,
+    isSelected: selectedSpecialty && item.id === selectedSpecialty.id
   }))
 )(SpecialtiesListItem)
 
-function SpecialtiesListItem({
-  specialty,
-  isSelected,
-  setFilterSpecialtyId,
-  goBack
-}) {
+function SpecialtiesListItem({ specialty, isSelected, setSpecialty, goBack }) {
   return (
-    <ListItem onPress={onPress} style={style()}>
-      <Text style={{ color: isSelected ? "white" : "black" }}>
-        {specialty.title}
-      </Text>
-    </ListItem>
+    <StyledListItem onPress={onPress} isSelected={isSelected}>
+      <StyledText isSelected={isSelected}>{specialty.title}</StyledText>
+    </StyledListItem>
   )
   function onPress() {
-    setFilterSpecialtyId(specialty.id)
+    setSpecialty(isSelected ? null : specialty)
     setTimeout(goBack, 400)
-  }
-  function style() {
-    if (isSelected) {
-      return {
-        backgroundColor: "#62b1f6",
-        marginLeft: 0,
-        paddingLeft: 15
-      }
-    }
   }
 }

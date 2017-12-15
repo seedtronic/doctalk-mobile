@@ -1,8 +1,8 @@
 import React from "react"
-import { List } from "native-base"
 import SpecialtiesListItem from "./SpecialtiesListItem"
 import withSpecialties from "../lib/withSpecialties"
 import SpinnerView from "../components/SpinnerView"
+import List from "./List"
 
 export default withSpecialties(SpinnerView)(SpecialtyListItems)
 
@@ -10,12 +10,8 @@ function SpecialtyListItems({ specialties }) {
   return (
     <List
       style={{ backgroundColor: "white" }}
-      dataArray={specialties}
-      renderRow={renderRow}
+      items={specialties}
+      ListItem={SpecialtiesListItem}
     />
   )
-}
-
-function renderRow(specialty) {
-  return <SpecialtiesListItem specialty={specialty} />
 }

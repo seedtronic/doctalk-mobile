@@ -16,9 +16,12 @@ import doctorsQuery from "../graphql/doctorsQuery"
 import { setRegion, setLoading } from "../lib/reducers/map"
 import loadCurrentLocation from "../lib/loadCurrentLocation"
 import withWatchProp from "../lib/withWatchProp"
+import get from "lodash/get"
 
 export default compose(
-  connect(({ map }) => ({ map }), { setRegion }),
+  connect(({ map, doctors: { specialty } }) => ({ map, specialty }), {
+    setRegion
+  }),
   lifecycle({
     componentWillMount() {
       if (!this.props.map.region) {
@@ -28,10 +31,10 @@ export default compose(
   }),
   branch(({ map }) => !map.region, renderComponent(SpinnerView)),
   graphql(doctorsQuery, {
-    options: ({ map: { region, filter } }) => {
+    options: ({ map: { region }, specialty }) => {
       return {
         fetchPolicy: "cache-and-network",
-        variables: { region, ...filter }
+        variables: { region, specialtyId: get(specialty, "id") }
       }
     }
   }),

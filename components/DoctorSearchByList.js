@@ -10,11 +10,15 @@ import { setCoords } from "../lib/reducers/currentPosition"
 import { setLoading } from "../lib/reducers/doctorList"
 import withWatchProp from "../lib/withWatchProp"
 import DoctorList from "../components/DoctorList"
+import get from "lodash/get"
 
 export default compose(
   withCurrentLocation("DoctorListScreen"),
   connect(
-    ({ currentPosition: { coords }, map: { filter } }) => ({ coords, filter }),
+    ({ currentPosition: { coords }, doctors: { specialty } }) => ({
+      coords,
+      specialty
+    }),
     { setCoords }
   ),
   withOnCurrentScreen("DoctorListScreen", ({ setCoords }) =>
@@ -26,10 +30,10 @@ export default compose(
       loading,
       doctors: (doctors ? doctors.edges : []).map(({ node }) => node)
     }),
-    options: ({ coords, filter }) => {
+    options: ({ coords, specialty }) => {
       return {
         fetchPolicy: "cache-and-network",
-        variables: { coords, ...filter }
+        variables: { coords, specialtyId: get(specialty, "id") }
       }
     }
   }),

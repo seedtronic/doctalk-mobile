@@ -1,29 +1,33 @@
 import React from "react"
+import styled from "styled-components/native"
 import { connect } from "react-redux"
-import { branch, compose, renderComponent } from "recompose"
-import { MaterialIcons } from "@expo/vector-icons"
-import Spinner from "./Spinner"
+import { compose } from "recompose"
+import { Icon, Text } from "native-base"
 import withNavigate from "../lib/withNavigate"
-import HeaderButton from "./HeaderButton"
+import FakeSmallButton from "./FakeSmallButton"
 
+const StyledText = styled(Text)`
+  font-size: 18;
+  color: white;
+  margin-left: 10;
+`
+
+const SearchIcon = styled(Icon).attrs({ name: "search" })`
+  fontSize: 22;
+  color: white;
+  background-color: transparent;
+`
 export default compose(
-  connect(({ map: { loading } }) => ({ loading })),
-  branch(({ loading }) => loading, renderComponent(LoadingButton)),
+  connect(({ doctors: { specialty } }) => ({ specialty })),
   withNavigate
 )(SearchButton)
 
-function LoadingButton() {
+function SearchButton({ specialty, navigate }) {
+  const text = specialty ? specialty.title : "Qual a especialidade?"
   return (
-    <HeaderButton transparent>
-      <Spinner />
-    </HeaderButton>
-  )
-}
-
-function SearchButton({ navigate }) {
-  return (
-    <HeaderButton onPress={navigate("SearchScreen")} transparent>
-      <MaterialIcons name="search" size={26} color="#2874F0" />
-    </HeaderButton>
+    <FakeSmallButton onPress={navigate("SearchScreen")}>
+      <SearchIcon name="search" search={12} />
+      <StyledText>{text}</StyledText>
+    </FakeSmallButton>
   )
 }
