@@ -2,10 +2,17 @@ import React from "react"
 import { branch, compose, renderComponent } from "recompose"
 import { connect } from "react-redux"
 import { Title } from "native-base"
+import withIsCurrentRouteGetters from "../lib/withIsCurrentRouteGetters"
 
 export default compose(
-  connect(({ map: { loading } }) => ({ loading })),
-  branch(({ loading }) => loading, renderComponent(LoadingMessage))
+  withIsCurrentRouteGetters,
+  connect(({ doctorList, map }) => ({ doctorList, map })),
+  branch(
+    ({ doctorList, map, getIsCurrentRoute }) =>
+      (getIsCurrentRoute("DoctorSearchByListScreen") && doctorList.loading) ||
+      (getIsCurrentRoute("DoctorSearchByMapScreen") && map.loading),
+    renderComponent(LoadingMessage)
+  )
 )(MapTitle)
 
 export function LoadingMessage() {
