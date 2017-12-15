@@ -1,11 +1,11 @@
 import React from "react"
 import GenericScreen from "./GenericScreen"
-import Doctors from "../components/Doctors"
+import DoctorSearchByMap from "../components/DoctorSearchByMap"
 
 export default function DoctorSearchByMapScreen() {
   return (
     <GenericScreen>
-      <Doctors />
+      <DoctorSearchByMap />
     </GenericScreen>
   )
 }
