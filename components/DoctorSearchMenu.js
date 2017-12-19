@@ -3,6 +3,7 @@ import styled from "styled-components/native"
 import { Segment } from "native-base"
 import DoctorSearchMenuButton from "./DoctorSearchMenuButton"
 import SearchButton from "./SearchButton"
+import { Foundation, MaterialCommunityIcons } from "@expo/vector-icons"
 
 const Container = styled(Segment)`
   justify-content: space-around;
@@ -21,12 +22,14 @@ export default function DoctorSearchMenu() {
       <SearchButton />
       <SearchTypeContainer>
         <DoctorSearchMenuButton
-          label="Lista"
+          IconComponent={Foundation}
+          iconName="list"
           routeName="DoctorSearchByListScreen"
           first
         />
         <DoctorSearchMenuButton
-          label="Mapa"
+          IconComponent={MaterialCommunityIcons}
+          iconName="google-maps"
           routeName="DoctorSearchByMapScreen"
           last
         />

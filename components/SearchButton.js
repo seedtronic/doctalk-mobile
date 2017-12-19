@@ -8,7 +8,7 @@ import withNavigate from "../lib/withNavigate"
 import FakeSmallButton from "./FakeSmallButton"
 
 const StyledText = styled(Text)`
-  font-size: 18;
+  font-size: 16;
   color: white;
   margin-left: 5;
 `
